@@ -1,5 +1,5 @@
 {
-  "name": "pochade-js",
+  "name": "@lnsy/mark-down",
   "version": "0.4.0",
   "description": "A context engineering boilerplate for generating custom HTML Elements",
   "main": "index.js",
@@ -33,6 +33,12 @@
     "style-loader": "^4.0.0"
   },
   "dependencies": {
-    "dataroom-js": "^0.6.0"
+    "dataroom-js": "^0.6.0",
+    "highlight.js": "^11.11.1",
+    "js-yaml": "^4.1.0",
+    "markdown-it": "^14.1.0",
+    "markdown-it-attribution": "^0.1.4",
+    "markdown-it-task-lists": "^2.1.1",
+    "tufte-css": "^1.8.0"
   }
 }

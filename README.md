@@ -63,3 +63,23 @@ PORT=8080
 ```
 
 If this variable is not set, the port will default to `3000`.
+
+
+```js
+import "@lnsy/mark-down"
+
+```
+
+```html
+<mark-down src="./README.md"></mark-down>
+
+```
+
+or: 
+```html
+<mark-down>
+# Markdown Within the 
+
+</mark-down>
+
+```
