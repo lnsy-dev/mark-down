@@ -72,7 +72,7 @@ class dataroomCompiler extends DataroomElement {
       );
     }
 
-    const parsed_markup = await parseDataroomMarkup(content.trim());
+    const parsed_markup = await parseDataroomMarkup(content.trim(), this.attrs);
     Object.keys(parsed_markup.data).forEach((key) => {
       this.setAttribute(key, parsed_markup.data[key]);
     });

@@ -1,18 +1,8 @@
-import yaml from 'js-yaml'; 
+import yaml from 'js-yaml';
 import markdownit from 'markdown-it';
 import markdownItAttribution from 'markdown-it-attribution';
 import markdownitTaskLists from 'markdown-it-task-lists';
-
-
-const md = markdownit({
-  html: true,
-  breaks: true,
-  linkify: true,
-  typographer: true
-
-}).use(markdownItAttribution, {
-  marker: 'cite:',
-}).use(markdownitTaskLists);
+import wikilinksPlugin from './markdown-it-wikilinks.js';
 
 
 export function extractYamlFrontMatter(inputString) {
@@ -47,10 +37,81 @@ function replaceVariables(str, attributes) {
 
 
 export async function parseDataroomMarkup(content, attributes = {}) {
+  const md = markdownit({
+    html: true,
+    breaks: true,
+    linkify: true,
+    typographer: true
+  }).use(markdownItAttribution, {
+    marker: 'cite:',
+  }).use(markdownitTaskLists)
+  .use(wikilinksPlugin, { wikilinksSearchPrefix: attributes['wikilinks-search-prefix'] })
+  .use(function(md) {
+    function aside(state, startLine, endLine) {
+      let pos = state.bMarks[startLine] + state.tShift[startLine];
+      let max = state.eMarks[startLine];
+
+      if (state.src.charCodeAt(pos) !== 58 /* : */) { return false; }
+
+      let marker_count = 1;
+      let marker_pos = pos;
+      while (marker_pos < max && state.src.charCodeAt(++marker_pos) === 58 /* : */) {
+        marker_count++;
+      }
+
+      if (marker_count < 3) { return false; }
+
+      const marker = state.src.slice(pos, marker_pos);
+
+      // Find the end of the block
+      let nextLine = startLine;
+      let auto_closed = false;
+      while (nextLine < endLine) {
+        nextLine++;
+        pos = state.bMarks[nextLine] + state.tShift[nextLine];
+        max = state.eMarks[nextLine];
+        if (pos < max && state.sCount[nextLine] < state.blkIndent) {
+          // non-empty line with negative indent should stop the list:
+          break;
+        }
+        if (state.src.slice(pos, max).trim() === marker) {
+          auto_closed = true;
+          break;
+        }
+      }
+
+      const old_parent = state.parentType;
+      const old_line_max = state.lineMax;
+      state.parentType = 'aside';
+
+      // this will prevent the parser from rendering the ::: markers
+      state.lineMax = nextLine;
+
+      let token = state.push('aside_open', 'aside', 1);
+      token.markup = marker;
+      token.map = [ startLine, nextLine ];
+
+      state.md.block.tokenize(state, startLine + 1, nextLine);
+
+      token = state.push('aside_close', 'aside', -1);
+      token.markup = marker;
+
+      state.parentType = old_parent;
+      state.lineMax = old_line_max;
+      state.line = nextLine + (auto_closed ? 1 : 0);
+
+      return true;
+    }
+
+    md.block.ruler.before('fence', 'aside', aside, {
+      alt: [ 'paragraph', 'reference', 'blockquote', 'list' ]
+    });
+    md.renderer.rules.aside_open = function() { return '<aside>\n'; };
+    md.renderer.rules.aside_close = function() { return '</aside>\n'; };
+  });
   const data = extractYamlFrontMatter(content);
   const template_without_yaml = removeYamlFrontMatter(content);
   const new_value = replaceVariables(template_without_yaml, data)
   const renderedContent = md.render(new_value);
   return {data:data, html: renderedContent};
 }
-

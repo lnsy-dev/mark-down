@@ -179,6 +179,7 @@ mark-down img {
     max-width: 100%;
 }
 
+mark-down aside,
 mark-down .sidenote,
 mark-down .marginnote {
     float: right;
@@ -187,8 +188,8 @@ mark-down .marginnote {
     width: 50%;
     margin-top: 0.3rem;
     margin-bottom: 0;
-    font-size: 1.1rem;
-    line-height: 1.3;
+    font-size: 80%;
+    line-height: 0.8;
     vertical-align: baseline;
     position: relative;
 }
@@ -231,16 +232,13 @@ mark-down table.fullwidth {
 
 mark-down div.table-wrapper {
     overflow-x: auto;
-    font-family: "Trebuchet MS", "Gill Sans", "Gill Sans MT", sans-serif;
 }
 
 mark-down .sans {
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
     letter-spacing: .03em;
 }
 
 mark-down code, pre > code {
-    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: 1.0rem;
     line-height: 1.42;
     -webkit-text-size-adjust: 100%; /* Prevent adjustments of font size after orientation changes in iOS. See https://github.com/edwardtufte/tufte-css/issues/81#issuecomment-261953409 */

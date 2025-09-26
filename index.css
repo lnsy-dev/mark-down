@@ -52,6 +52,7 @@
 
 */
 
+@import "./styles/variables.css";
 @import "./styles/tufte.css";
 
 mark-down {
