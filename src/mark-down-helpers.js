@@ -44,7 +44,7 @@ export async function parseDataroomMarkup(content, attributes = {}) {
     typographer: true
   }).use(markdownItAttribution, {
     marker: 'cite:',
-  }).use(markdownitTaskLists)
+  }).use(markdownitTaskLists, { enabled: true, disabled: true })
   .use(wikilinksPlugin, { wikilinksSearchPrefix: attributes['wikilinks-search-prefix'] })
   .use(function(md) {
     function aside(state, startLine, endLine) {

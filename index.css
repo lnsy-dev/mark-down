@@ -58,8 +58,9 @@
 mark-down {
   display: block;
   font-size: var(--font-size);
-  padding: 1em;
-  max-width: 40em;
+  max-width: 60em;
+  margin: auto;
+  font-size: 10pt;
 }
 
 link-tag {
@@ -70,6 +71,17 @@ link-tag {
 .task-list-ul {
   list-style: none;
   margin: 0;
+  padding: 0;
+}
+
+ul.contains-task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+ul.contains-task-list li {
   padding: 0;
 }
 
