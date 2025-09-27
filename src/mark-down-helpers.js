@@ -36,7 +36,96 @@ function replaceVariables(str, attributes) {
 }
 
 
+
+function figureCaptionPlugin(md) {
+  function replaceImageWithFigure(state) {
+    const tokens = state.tokens;
+    let i = 0;
+    while (i < tokens.length) {
+      if (tokens[i].type === 'inline' && tokens[i].children && tokens[i].children.length > 0) {
+        const inlineChildren = tokens[i].children;
+        let j = 0;
+        while (j < inlineChildren.length) {
+          const imageToken = inlineChildren[j];
+          if (imageToken.type === 'text') {
+            const textContent = imageToken.content;
+            const imageMarkdownRegex = /^!\[([^\]]+)\]$/;
+            const match = textContent.match(imageMarkdownRegex);
+
+            if (match) {
+              const imageUrl = match[1]; // The content inside the brackets is the URL
+              const imageRegex = /\.(jpg|jpeg|webp|png|mp4)$/i;
+
+              if (imageRegex.test(imageUrl)) {
+                // Check for softbreak and text token immediately after the image within the same inline token
+                if (j + 2 < inlineChildren.length && inlineChildren[j + 1].type === 'softbreak' && inlineChildren[j + 2].type === 'text') {
+                  const figcaptionContent = inlineChildren[j + 2].content;
+
+                  const figureOpen = new state.Token('figure_open', 'figure', 1);
+                  const newImageToken = new state.Token('image', 'img', 0);
+                  newImageToken.attrs = [['src', imageUrl], ['alt', imageUrl]];
+                  newImageToken.children = [new state.Token('text', '', 0)];
+                  newImageToken.children[0].content = imageUrl;
+
+                  const figcaptionOpen = new state.Token('figcaption_open', 'figcaption', 1);
+                  figcaptionOpen.children = [new state.Token('text', '', 0)];
+                  figcaptionOpen.children[0].content = figcaptionContent;
+                  const figcaptionClose = new state.Token('figcaption_close', 'figcaption', -1);
+
+                  const figureClose = new state.Token('figure_close', 'figure', -1);
+
+                  const newTokens = [
+                    figureOpen,
+                    newImageToken,
+                    figcaptionOpen,
+                    figcaptionClose,
+                    figureClose
+                  ];
+
+                  // Replace the original paragraph_open, inline, and paragraph_close tokens with the new figure structure
+                  tokens.splice(i, 3, ...newTokens);
+                  i += newTokens.length;
+                  // Break from outer loop as we've processed a block-level change
+                  break;
+                } else {
+                  j++;
+                }
+              } else {
+                j++;
+              }
+            } else {
+              j++;
+            }
+          } else {
+            j++;
+          }
+        }
+        // If we reached here, it means no figure was created within this inline token
+        // So we just increment i to move to the next block token
+        i++;
+      } else {
+        i++; // Increment outer loop counter
+      }
+    }
+  }
+
+  md.core.ruler.push('replace_image_with_figure', replaceImageWithFigure);
+
+  md.renderer.rules.figcaption_open = function (tokens, idx, options, env, self) {
+    const token = tokens[idx];
+    let result = '<figcaption>';
+    if (token.children) {
+      result += self.renderInline(token.children, options, env);
+    }
+    return result;
+  };
+  md.renderer.rules.figcaption_close = function (tokens, idx, options, env, self) {
+    return '</figcaption>';
+  };
+}
+
 export async function parseDataroomMarkup(content, attributes = {}) {
+
   const md = markdownit({
     html: true,
     breaks: true,
@@ -46,6 +135,7 @@ export async function parseDataroomMarkup(content, attributes = {}) {
     marker: 'cite:',
   }).use(markdownitTaskLists, { enabled: true, disabled: true })
   .use(wikilinksPlugin, { wikilinksSearchPrefix: attributes['wikilinks-search-prefix'] })
+  .use(figureCaptionPlugin)
   .use(function(md) {
     function aside(state, startLine, endLine) {
       let pos = state.bMarks[startLine] + state.tShift[startLine];
