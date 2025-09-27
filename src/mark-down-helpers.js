@@ -3,6 +3,7 @@ import markdownit from 'markdown-it';
 import markdownItAttribution from 'markdown-it-attribution';
 import markdownitTaskLists from 'markdown-it-task-lists';
 import wikilinksPlugin from './markdown-it-wikilinks.js';
+import figureCaptionPlugin from './markdown-it-figure-caption.js';
 
 
 export function extractYamlFrontMatter(inputString) {
@@ -36,7 +37,10 @@ function replaceVariables(str, attributes) {
 }
 
 
+
+
 export async function parseDataroomMarkup(content, attributes = {}) {
+
   const md = markdownit({
     html: true,
     breaks: true,
@@ -46,6 +50,7 @@ export async function parseDataroomMarkup(content, attributes = {}) {
     marker: 'cite:',
   }).use(markdownitTaskLists, { enabled: true, disabled: true })
   .use(wikilinksPlugin, { wikilinksSearchPrefix: attributes['wikilinks-search-prefix'] })
+  .use(figureCaptionPlugin)
   .use(function(md) {
     function aside(state, startLine, endLine) {
       let pos = state.bMarks[startLine] + state.tShift[startLine];
