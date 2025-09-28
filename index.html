@@ -19,9 +19,7 @@
 
     }
 
-    a {
-      color: var(--highlight-color);
-    }
+   
 
   </style>
 </head>
@@ -30,5 +28,12 @@
 <mark-down src="README.md">
 </mark-down>
 
+<script>
+  customElements.whenDefined('mark-down').then(() => {
+    document.querySelector('mark-down').addEventListener('checkbox-clicked', (e) => {
+      console.log('Checkbox clicked!', e.detail);
+    });
+  });
+</script>
 </body>
 </html>

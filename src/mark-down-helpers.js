@@ -48,7 +48,7 @@ export async function parseDataroomMarkup(content, attributes = {}) {
     typographer: true
   }).use(markdownItAttribution, {
     marker: 'cite:',
-  }).use(markdownitTaskLists, { enabled: true, disabled: true })
+  }).use(markdownitTaskLists, { enabled: true })
   .use(wikilinksPlugin, { wikilinksSearchPrefix: attributes['wikilinks-search-prefix'] })
   .use(figureCaptionPlugin)
   .use(function(md) {
@@ -114,6 +114,20 @@ export async function parseDataroomMarkup(content, attributes = {}) {
     md.renderer.rules.aside_open = function() { return '<aside>\n'; };
     md.renderer.rules.aside_close = function() { return '</aside>\n'; };
   });
+
+  // add line numbers to list items
+  const originalListItemOpen = md.renderer.rules.list_item_open || function(tokens, idx, options, env, self) {
+    return self.renderToken(tokens, idx, options);
+  };
+
+  md.renderer.rules.list_item_open = function(tokens, idx, options, env, self) {
+    const token = tokens[idx];
+    if (token.map && token.map.length) {
+      token.attrSet('data-line', String(token.map[0]));
+    }
+    return originalListItemOpen(tokens, idx, options, env, self);
+  };
+
   const data = extractYamlFrontMatter(content);
   const template_without_yaml = removeYamlFrontMatter(content);
   const new_value = replaceVariables(template_without_yaml, data)

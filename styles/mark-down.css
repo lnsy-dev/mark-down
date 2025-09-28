@@ -1,0 +1,71 @@
+mark-down {
+    max-width: var(--markdown-max-width);
+    padding-right: var(--mardkwon-aside-width);
+}
+
+mark-down p,
+mark-down dl,
+mark-down ol,
+mark-down ul {
+    max-width: var(--markdown-max-width);
+    font-size: 1.0rem;
+    line-height: 1.618rem;
+}
+
+
+
+mark-down p {
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
+    padding-right: 0;
+    vertical-align: baseline;
+}
+
+mark-down aside {
+    width: var(--markdown-aside-width);
+    float: right;
+    clear: right;
+    margin-right: calc(var(--markdown-aside-width) * -1);
+    width: calc(var(--markdown-aside-width) - 4rem);
+    margin-top: 0.3rem;
+    margin-bottom: 0;
+    line-height: 0.8;
+    vertical-align: baseline;
+    position: relative;
+
+}
+
+mark-down aside p {
+    font-size: 80%;
+}
+
+mark-down figure {
+    max-width: 90%;
+}
+
+mark-down figure img {
+    max-width: 100%;
+    margin: auto;
+}
+
+mark-down figcaption,
+mark-down figure.fullwidth figcaption {
+    margin-right: 0%;
+    margin-left: auto;
+    max-width: none;
+    max-width: 80%;
+    font-size: 80%;
+    font-style: italic;
+}
+
+mark-down blockquote {
+    margin-left: 1.5em;
+    margin-right: 0em;
+    font-size: 130%;
+    font-style: italic;
+}
+
+mark-down blockquote p,
+mark-down blockquote footer {
+    width: 100%;
+}

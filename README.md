@@ -108,9 +108,20 @@ Will be rendered as:
 
 ### Task Lists
 
-Create GitHub-style task lists. When used with an `editor-id`, clicking a checkbox will update the source Markdown in the connected editor.
+Create GitHub-style task lists. When a user clicks a checkbox, the component emits a `checkbox-clicked` custom event.
 
-**Example:**
+You can listen for this event to handle checkbox state changes. The event `detail` object contains the `content` of the clicked line and its `lineNumber` (0-indexed) in the source markdown.
+
+**Example Event Listener:**
+
+```javascript
+document.querySelector('mark-down').addEventListener('checkbox-clicked', (e) => {
+  console.log('Checkbox clicked:', e.detail);
+  // e.g., { content: '- [ ] Write documentation', lineNumber: 2 }
+});
+```
+
+**Example Markdown:**
 
 ```markdown
 - [x] Complete initial setup

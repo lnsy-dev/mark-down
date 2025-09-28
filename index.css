@@ -53,13 +53,15 @@
 */
 
 @import "./styles/variables.css";
-@import "./styles/tufte.css";
+@import "./styles/mark-down.css";
+@import "./styles/highlight-js.css";
 
 mark-down {
   display: block;
   font-size: var(--font-size);
   max-width: var(--markdown-max-width);
   margin: auto;
+  padding-right: var(--markdown-aside-width);
   font-size: 10pt;
 }
 
@@ -83,71 +85,4 @@ ul.contains-task-list {
 
 ul.contains-task-list li {
   padding: 0;
-}
-
-/*
-
-  Begin Highlight.JS styles
-
-*/
-*
-pre code.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 1em
-}
-code.hljs {
-  padding: 3px 5px
-}
-
-.hljs {
-  color: var(--code-foreground-color);
-  background: var(--code-background-color);
-}
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-literal,
-.hljs-section,
-.hljs-attr,
-.hljs-link {
-  color: var(--code-highlight-color);
-}
-.hljs-subst {
-  /* default */
-  
-}
-.hljs-string,
-.hljs-title,
-.hljs-name,
-.hljs-type,
-.hljs-attribute,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-built_in,
-.hljs-addition,
-.hljs-variable,
-.hljs-template-tag,
-.hljs-template-variable {
-  color: var(--code-secondary-highlight-color);
-}
-.hljs-comment,
-.hljs-quote,
-.hljs-deletion,
-.hljs-meta {
-  color: var(--code-secondary-highlight-color);
-}
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-literal,
-.hljs-title,
-.hljs-section,
-.hljs-doctag,
-.hljs-type,
-.hljs-name,
-.hljs-strong {
-  color: var(--code-neutral-color);
-  font-weight: bold
-}
-.hljs-emphasis {
-  font-style: italic
 }

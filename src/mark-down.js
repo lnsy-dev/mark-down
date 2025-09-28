@@ -14,18 +14,23 @@ class dataroomCompiler extends DataroomElement {
         const checkbox = e.target;
         e.preventDefault(); // Prevent the checkbox from toggling visually
 
-        const line_number = checkbox.getAttribute("data-line");
-        const editor = document.getElementById(editor_id);
-
-        if (editor && typeof editor.findAndReplace === "function" && line_number) {
-          const old_substring = checkbox.checked ? "[ ]" : "[x]";
-          const new_substring = checkbox.checked ? "[x]" : "[ ]";
-
-          editor.findAndReplace(
-            parseInt(line_number),
-            old_substring,
-            new_substring
-          );
+        const listItem = checkbox.closest('li');
+        if (listItem) {
+            const lineNumber = listItem.getAttribute("data-line");
+            if (lineNumber) {
+              const lines = this.content.split('\n');
+              const content = lines[parseInt(lineNumber)];
+    
+              const event = new CustomEvent('checkbox-clicked', {
+                bubbles: true,
+                composed: true,
+                detail: {
+                  content: content,
+                  lineNumber: parseInt(lineNumber)
+                }
+              });
+              this.dispatchEvent(event);
+            }
         }
       }
     });

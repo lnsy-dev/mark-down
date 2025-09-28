@@ -144,8 +144,8 @@ mark-down figure {
     border: 0;
     font-size: 100%;
     font: inherit;
+    display: block;
     vertical-align: baseline;
-    max-width: 55%;
     -webkit-margin-start: 0;
     -webkit-margin-end: 0;
     margin: 0 0 3em 0;
@@ -185,7 +185,7 @@ mark-down .marginnote {
     float: right;
     clear: right;
     margin-right: calc(var(--markdown-aside-width) * -1);
-    width: var(--markdown-aside-width);
+    width: calc(var(--markdown-aside-width) - 4rem);
     margin-top: 0.3rem;
     margin-bottom: 0;
     font-size: 0.618;
