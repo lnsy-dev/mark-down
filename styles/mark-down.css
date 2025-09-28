@@ -3,6 +3,15 @@ mark-down {
     padding-right: var(--mardkwon-aside-width);
 }
 
+mark-down h1, 
+mark-down h2, 
+mark-down h3, 
+mark-down h4 {
+    font-weight: 400;
+    margin-top: 2em;
+    margin-bottom: 1.2361rem;
+}
+
 mark-down p,
 mark-down dl,
 mark-down ol,
