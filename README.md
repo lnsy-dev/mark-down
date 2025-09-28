@@ -201,6 +201,10 @@ Add attributions or citations using the `cite:` marker.
 cite: Franklin D. Roosevelt
 ```
 
+**generates**
+> The only thing we have to fear is fear itself.
+cite: Franklin D. Roosevelt
+
 ### Code Syntax Highlighting
 
 Code blocks are automatically highlighted using `highlight.js`. The language is auto-detected, but you can also specify it.

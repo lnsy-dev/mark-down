@@ -184,11 +184,11 @@ mark-down .sidenote,
 mark-down .marginnote {
     float: right;
     clear: right;
-    margin-right: -60%;
-    width: 50%;
+    margin-right: calc(var(--markdown-aside-width) * -1);
+    width: var(--markdown-aside-width);
     margin-top: 0.3rem;
     margin-bottom: 0;
-    font-size: 80%;
+    font-size: 0.618;
     line-height: 0.8;
     vertical-align: baseline;
     position: relative;

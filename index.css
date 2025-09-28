@@ -58,7 +58,7 @@
 mark-down {
   display: block;
   font-size: var(--font-size);
-  max-width: 60em;
+  max-width: var(--markdown-max-width);
   margin: auto;
   font-size: 10pt;
 }

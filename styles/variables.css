@@ -18,5 +18,7 @@
   --fg-color: #5b4931;            
   --highlight-color: #FE7400;     
   --secondary-color: #1e293b;     
-  --trinary-color: #475569;       
+  --trinary-color: #475569;   
+  --markdown-max-width: 40em;  
+  --markdown-aside-width: 20em;  
 }
