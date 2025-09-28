@@ -4,8 +4,6 @@ An opinionated, dependency-free web component that parses and renders Markdown w
 
 This component extends standard Markdown to include YAML Front Matter, wikilinks, task lists, asides, and more, making it a versatile tool for documentation, note-taking apps, and content-heavy websites.
 
-It styles your markdown using [tufte-css](https://edwardtufte.github.io/tufte-css/) for good initial styles.
-
 ## Installation
 
 Clone the repository and install the dependencies.
@@ -215,6 +213,25 @@ cite: Franklin D. Roosevelt
 **generates**
 > The only thing we have to fear is fear itself.
 cite: Franklin D. Roosevelt
+
+### Footnotes
+
+Add footnotes to your text for citations or additional information.
+
+**Example:**
+
+```markdown
+Here is some text with a footnote.[^1]
+
+[^1]: This is the footnote content.
+```
+
+This will render the footnote at the bottom of the document.
+
+Here is some text with a footnote.[^5]
+
+[^5]: This is the footnote content.
+
 
 ### Code Syntax Highlighting
 
