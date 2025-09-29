@@ -58,8 +58,7 @@ mark-down figure img {
     margin: auto;
 }
 
-mark-down figcaption,
-mark-down figure.fullwidth figcaption {
+mark-down figcaption {
     margin-right: 0%;
     margin-left: auto;
     max-width: none;

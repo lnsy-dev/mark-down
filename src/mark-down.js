@@ -4,7 +4,6 @@ import { hljs } from "./vendor/highlight/highlight.min.js";
 
 class dataroomCompiler extends DataroomElement {
   async initialize() {
-    const editor_id = this.attrs["editor-id"];
 
     // --- Event Delegation Setup ---
     // This single listener is attached once and handles all checkbox clicks.
@@ -35,52 +34,30 @@ class dataroomCompiler extends DataroomElement {
       }
     });
 
-    if (editor_id) {
-      // 1. Wait for the browser to define the <lnsy-edit> component.
-      await customElements.whenDefined('lnsy-edit');
-      
-      const editor = document.getElementById(editor_id);
-
-      // 2. Wait for that specific editor instance to finish its internal setup.
-      if (editor && editor.ready instanceof Promise) {
-        await editor.ready;
-      }
-
-      // 3. Now it's safe to interact with the editor.
-      if (editor && typeof editor.getValue === 'function') {
-        editor.on("change", (content) => {
-          this.content = content;
-          this.render();
-        });
-
-        this.content = editor.getValue();
-        await this.render();
-      }
+    if (typeof this.attrs["src"] !== "undefined") {
+      this.content = await fetch(this.attrs["src"]).then((res) => res.text());
     } else {
-      // Fallback for when there's no editor
-      if (typeof this.attrs["src"] !== "undefined") {
-        this.content = await fetch(this.attrs["src"]).then((res) => res.text());
-      } else {
-        this.content = this.textContent;
-        this.innerHTML = " ";
-      }
-      await this.render();
+      this.content = this.textContent;
+      this.innerHTML = " ";
     }
+    await this.render();
   }
 
   async render() {
     let content = this.content;
+
+    const parsed_markup = await parseDataroomMarkup(content.trim(), this.attrs);
+    Object.keys(parsed_markup.data).forEach((key) => {
+      this.setAttribute(key, parsed_markup.data[key]);
+    });
+
+    // replace attr variables
     for (const key in this.attrs) {
       content = content.replace(
         new RegExp(`{{${key}}}`, "g"),
         this.attrs[key]
       );
     }
-
-    const parsed_markup = await parseDataroomMarkup(content.trim(), this.attrs);
-    Object.keys(parsed_markup.data).forEach((key) => {
-      this.setAttribute(key, parsed_markup.data[key]);
-    });
 
     this.innerHTML = parsed_markup.html;
 

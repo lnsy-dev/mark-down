@@ -43,21 +43,6 @@ You can also place Markdown directly inside the element.
 </mark-down>
 ```
 
-### Two-Way Binding with an Editor
-
-The `<mark-down>` element can be linked to a text editor for live previews. By providing an `editor-id`, the component will listen for changes from the specified editor and update the rendered output in real-time.
-
-```html
-<!-- Editor Element -->
-<lnsy-edit id="my-editor">
-# Initial Markdown
-- list item
-</lnsy-edit>
-
-<!-- Live Preview -->
-<mark-down editor-id="my-editor"></mark-down>
-```
-
 ## Features
 
 The `<mark-down>` element supports standard Markdown syntax and includes several powerful extensions.
