@@ -231,6 +231,11 @@ The HTML specification is maintained by the W3C.
 
 This will render the abbreviation with a tooltip.
 
+*[HTML]: Hyper Text Markup Language
+
+The HTML specification is maintained by the W3C.
+
+
 
 ### Code Syntax Highlighting
 
