@@ -5,6 +5,7 @@ import markdownitTaskLists from 'markdown-it-task-lists';
 import wikilinksPlugin from './markdown-it-wikilinks.js';
 import figureCaptionPlugin from './markdown-it-figure-caption.js';
 import markdownitFootnote from 'markdown-it-footnote';
+import markdownitAbbr from 'markdown-it-abbr';
 
 
 export function extractYamlFrontMatter(inputString) {
@@ -53,6 +54,7 @@ export async function parseDataroomMarkup(content, attributes = {}) {
   .use(wikilinksPlugin, { wikilinksSearchPrefix: attributes['wikilinks-search-prefix'] })
   .use(figureCaptionPlugin)
   .use(markdownitFootnote)
+  .use(markdownitAbbr)
   .use(function(md) {
     function aside(state, startLine, endLine) {
       let pos = state.bMarks[startLine] + state.tShift[startLine];

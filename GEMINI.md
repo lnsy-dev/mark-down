@@ -2,6 +2,10 @@
 
 This is a vanilla JavaScript, CSS, and HTML project that uses `rspack` as a builder.
 
+We are building a markdown rendering front end component that uses the markdown-it library.
+
+When you install plugins with npm make sure to use --save when you do to save it in the packages.json file.
+
 Do not run a dev server. Do not run `npm start` unless specifically asked to.
 
 ## Root Directory

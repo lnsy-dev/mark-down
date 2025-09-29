@@ -217,6 +217,20 @@ Here is some text with a footnote.[^5]
 
 [^5]: This is the footnote content.
 
+### Abbreviations
+
+Define abbreviations, which are then expanded on hover.
+
+**Example:**
+
+```markdown
+*[HTML]: Hyper Text Markup Language
+
+The HTML specification is maintained by the W3C.
+```
+
+This will render the abbreviation with a tooltip.
+
 
 ### Code Syntax Highlighting
 
