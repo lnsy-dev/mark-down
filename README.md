@@ -6,11 +6,16 @@ This component extends standard Markdown to include YAML Front Matter, wikilinks
 
 ## Installation
 
-Clone the repository and install the dependencies.
+Install via npm: 
 
 ```bash
-git clone git@github.com:lnsy-dev/pochade-js.git
-npm install
+npm install @lnsy/mark-down
+```
+
+or import via cdn: 
+
+```
+import "https://npms... etc"
 ```
 
 ## Usage
@@ -282,33 +287,6 @@ Notes:
 - Works inline alongside other Markdown.
 - Does not affect content inside code spans or fenced code blocks.
 
-#### Quick Demos
-
-Minimal inline usage (assuming the component is already registered on the page):
-
-```html
-<mark-down>Water: H~2~O; Energy: E = mc^2^; Ordinal: 29^th^</mark-down>
-```
-
-Standalone HTML with module import:
-
-```html
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Subscript/Superscript Demo</title>
-    <script type="module">
-      import "@lnsy/mark-down";
-    </script>
-  </head>
-  <body>
-    <mark-down>
-      Water: H~2~O; Energy: E = mc^2^; Ordinal: 29^th^
-    </mark-down>
-  </body>
-</html>
-```
 
 ### Code Syntax Highlighting
 
@@ -323,6 +301,14 @@ function greet() {
 }
 ```
 ````
+
+renders:
+
+```javascript
+function greet() {
+  console.log("Hello, world!");
+}
+```
 
 ## Customizing the Build
 
