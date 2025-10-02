@@ -163,9 +163,9 @@ renders
 
 ### Wiki Style Links
 
-Create internal links using the `[[Page Name]]` syntax, similar to Obsidian or TiddlyWiki.
+Create internal links using the &#91;&#91;Page Name]] syntax, similar to Obsidian or TiddlyWiki.
 
-By default, `/[/[My Page]]` will generate a link to `/My Page.html`.
+By default, &#91;&#91;My Page]] will generate a link to `/My%20Page.html`.
 
 **Example:**
 

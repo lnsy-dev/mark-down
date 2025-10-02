@@ -1,13 +1,38 @@
 mark-down {
+    display: block;
+    font-size: var(--font-size);
     max-width: var(--markdown-max-width);
     min-width: 320px;
-    padding: 1em;
+    margin: auto;
     padding-right: var(--markdown-aside-width);
 }
 
-mark-down h1, 
-mark-down h2, 
-mark-down h3, 
+mark-down link-tag {
+    color: var(--highlight-color);
+    background-color: var(--secondary-highlight-color);
+}
+
+mark-down .task-list-ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+mark-down ul.contains-task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+}
+
+mark-down ul.contains-task-list li {
+    padding: 0;
+}
+
+
+mark-down h1,
+mark-down h2,
+mark-down h3,
 mark-down h4 {
     font-weight: 400;
     font-style: italic;
@@ -173,6 +198,7 @@ mark-down input[type="checkbox"]:disabled {
         display: inline-grid;
         place-content: center;
     }
+
     mark-down input[type="checkbox"]::before {
         content: "";
         width: 0.55rem;
@@ -182,6 +208,7 @@ mark-down input[type="checkbox"]:disabled {
         box-shadow: inset 1rem 1rem var(--highlight-color);
         clip-path: polygon(14% 44%, 0 59%, 44% 100%, 100% 34%, 87% 20%, 44% 62%);
     }
+
     mark-down input[type="checkbox"]:checked::before {
         transform: scale(1);
     }

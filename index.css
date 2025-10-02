@@ -3,34 +3,3 @@
 @import "./styles/highlight-js.css";
 @import "./styles/mobile.css";
 @import "./styles/print.css";
-
-mark-down {
-  display: block;
-  font-size: var(--font-size);
-  max-width: var(--markdown-max-width);
-  margin: auto;
-  padding-right: var(--markdown-aside-width);
-  font-size: 10pt;
-}
-
-link-tag {
-  color: var(--highlight-color);
-  background-color: var(--secondary-highlight-color);
-}
-
-.task-list-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-ul.contains-task-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-
-}
-
-ul.contains-task-list li {
-  padding: 0;
-}
