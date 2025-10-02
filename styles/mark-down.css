@@ -1,6 +1,8 @@
 mark-down {
     max-width: var(--markdown-max-width);
-    padding-right: var(--mardkwon-aside-width);
+    min-width: 320px;
+    padding: 1em;
+    padding-right: var(--mark-down-aside-width);
 }
 
 mark-down h1, 
@@ -9,37 +11,38 @@ mark-down h3,
 mark-down h4 {
     font-weight: 400;
     font-style: italic;
-    margin-top: 2em;
+    margin-top: 1.2361em;
     margin-bottom: 1.2361rem;
 }
 
-h1 {
-    font-size: 200%;
+mark-down h1 {
+    font-size: var(--h1-font-size);
 }
 
-h2 {
-    font-size: 160%;
+mark-down h2 {
+    font-size: var(--h2-font-size);
 }
 
-h3 {
-    font-size: 130%;
+mark-down h3 {
+    font-size: var(--h3-font-size);
 }
 
 mark-down p,
 mark-down dl,
 mark-down ol,
 mark-down ul {
-    max-width: var(--markdown-max-width);
-    font-size: 1.0rem;
-    line-height: 1.618rem;
+    font-size: var(--font-size);
+    line-height: var(--line-height);
 }
 
+mark-down a {
+    color: var(--link-color);
+}
 
 
 mark-down p {
     margin-top: 1.4rem;
     margin-bottom: 1.4rem;
-    padding-right: 0;
     vertical-align: baseline;
 }
 
@@ -54,11 +57,8 @@ mark-down aside {
     line-height: 0.8;
     vertical-align: baseline;
     position: relative;
+    padding-right: 0.5em;
 
-}
-
-mark-down aside p {
-    font-size: 80%;
 }
 
 mark-down figure {
@@ -90,4 +90,9 @@ mark-down blockquote {
 mark-down blockquote p,
 mark-down blockquote footer {
     width: 100%;
+}
+
+mark-down hr {
+    margin: 3em 0;
+    color: var(--neutral-fg-color);
 }

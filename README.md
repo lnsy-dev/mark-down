@@ -1,8 +1,10 @@
-# Mark-Down Element
+# mark-down Element
 
-An opinionated, dependency-free web component that parses and renders Markdown with a suite of advanced features. Drop it into any project to bring rich text formatting to your content.
+An opinionated, dependency-free web vanilla js component that parses and renders Markdown with a suite of advanced features. Drop it into any project to bring rich text formatting to your content.
 
-This component extends standard Markdown to include YAML Front Matter, wikilinks, task lists, asides, and more, making it a versatile tool for documentation, note-taking apps, and content-heavy websites.
+This component extends standard Markdown to include YAML Front Matter, wiki style links, task lists, asides. 
+
+It is a little heavy (currently about 1mb, 372k gzipped), but it has a lot of "batteries included" features.
 
 ## Installation
 
@@ -48,7 +50,9 @@ You can also place Markdown directly inside the element.
 </mark-down>
 ```
 
-## Features
+---
+
+# Features
 
 The `<mark-down>` element supports standard Markdown syntax and includes several powerful extensions.
 
@@ -71,6 +75,38 @@ This document is titled "$title" and was written by $author.
 ```
 
 The `title`, `author`, and `version` attributes will be set on the `<mark-down>` element, which you can inspect in the DOM.
+
+
+### Custom Themes
+
+For your convenience we use css variables to adjust color and sizes.
+
+Override these variables in your css to change how it looks: 
+
+```css
+:root {  
+  --bg-color: #FFF8E7;            
+  --fg-color: #5b4931;
+  --neutral-bg-color: #d7d0c5;    
+  --neutral-fg-color: #5e5550;        
+  --highlight-color: #FE7400;     
+  --secondary-color: #564c2e;     
+  --trinary-color: #475569;   
+  --markdown-max-width: 40rem;  
+  --markdown-aside-width: 20rem;  
+  --code-secondary-highlight-color: var(--secondary-color);
+  --code-foreground-color: var(--fg-color);
+  --code-background-color: var(--neutral-bg-color);
+  --code-highlight-color: var(--trinary-color);
+  --code-neutral-color: var(--neutral-fg-color);
+  --h1-font-size: 2rem;
+  --h2-font-size: 1.8rem;
+  --h3-font-size: 1.5rem;
+  --font-size: 1.0rem;
+  --line-height: 1.618rem;
+}
+
+```
 
 ### Variable Substitution
 
@@ -124,11 +160,11 @@ renders
 - [ ] Deploy to production
 
 
-### Wikilinks
+### Wiki Style Links
 
 Create internal links using the `[[Page Name]]` syntax, similar to Obsidian or TiddlyWiki.
 
-By default, `[[My Page]]` will generate a link to `/My Page.html`.
+By default, `/[/[My Page]]` will generate a link to `/My Page.html`.
 
 **Example:**
 
@@ -155,7 +191,7 @@ Create side notes or callouts using a `:::` block. This is useful for highlighti
 **Example:**
 
 :::
-This will be rendered inside an `<aside>` HTML tag.
+This is an aside. It can contain any other Markdown content, including lists, links, and code blocks.
 :::
 
 
@@ -223,7 +259,7 @@ Here is some text with a footnote.[^5]
 [^5]: This is the footnote content.
 
 
-### Abbreviations (markdown-it-abbr)
+### Abbreviations
 
 Define abbreviations with their expansions, then write the short form in your text. At render time, occurrences are converted to semantic <abbr> elements with a title attribute.
 
@@ -248,6 +284,8 @@ Renders roughly as:
 
 *[HTML]: HyperText Markup Language
 *[W3C]: World Wide Web Consortium
+
+
 
 HTML is standardized by the W3C.
 
@@ -310,11 +348,13 @@ function greet() {
 }
 ```
 
-## Customizing the Build
+---
 
-You can customize the build output by creating a `.env` file in the root of the project.
+# Local Development
 
 ### Output Filename
+
+You can customize the build output by creating a `.env` file in the root of the project.
 
 To change the name of the output file, set the `OUTPUT_FILE_NAME` variable in your `.env` file.
 
