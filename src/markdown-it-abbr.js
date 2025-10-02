@@ -1,58 +1,72 @@
 export default function markdownitAbbr(md) {
-  // Collect abbreviation definitions and strip their paragraphs
+  // 1) Collect abbreviation definitions and hide their paragraphs
   md.core.ruler.after('inline', 'abbr_def', function abbrDef(state) {
     const tokens = state.tokens;
-    const toRemove = new Set();
     const abbrs = {};
 
-    for (let i = 0; i < tokens.length; i++) {
+    for (let i = 0; i < tokens.length - 2; i++) {
       const open = tokens[i];
-      if (open.type !== 'paragraph_open') continue;
       const inline = tokens[i + 1];
       const close = tokens[i + 2];
-      if (!inline || inline.type !== 'inline' || !close || close.type !== 'paragraph_close') continue;
+      if (open.type !== 'paragraph_open' || !inline || inline.type !== 'inline' || !close || close.type !== 'paragraph_close') {
+        continue;
+      }
 
-      // Split into lines and consider only non-empty trimmed lines
-      const lines = inline.content
-        .split('\n')
-        .map((s) => s.trim())
-        .filter((s) => s.length > 0);
+      // Build logical lines from inline children using softbreaks
+      if (!inline.children) continue;
+      const lines = [];
+      let buf = '';
+      let onlyTextAndBreaks = true;
+      for (const child of inline.children) {
+        if (child.type === 'softbreak') {
+          lines.push(buf);
+          buf = '';
+          continue;
+        }
+        if (child.type !== 'text') {
+          onlyTextAndBreaks = false;
+          break;
+        }
+        buf += child.content;
+      }
+      if (!onlyTextAndBreaks) continue;
+      if (buf.length > 0) lines.push(buf);
 
-      if (lines.length === 0) continue;
-
-      // Match only definition lines of the form: *[TERM]: Expansion
-      let allDefs = true;
-      for (const line of lines) {
-        const m = line.match(/^\*\[([^\]]+)\]:\s+(.+)$/);
+      // Parse definition lines: *[TERM]: Expansion
+      let foundAny = false;
+      for (let k = 0; k < lines.length; k++) {
+        const s = lines[k].trim();
+        if (s.length === 0) continue;
+        const m = s.match(/^\*\[([^\]]+)\]:\s+(.+)$/);
         if (!m) {
-          allDefs = false;
+          foundAny = false;
           break;
         }
         const term = m[1];
         const title = m[2].trim();
-        if (term) abbrs[term] = title;
+        if (term) {
+          abbrs[term] = title;
+          foundAny = true;
+        }
       }
 
-      // If the entire paragraph consists of definitions, mark it for removal
-      if (allDefs) {
-        toRemove.add(i);
-        toRemove.add(i + 1);
-        toRemove.add(i + 2);
-        i += 2; // skip ahead
+      // If this paragraph is purely definitions, hide it
+      if (foundAny) {
+        open.hidden = true;
+        inline.hidden = true;
+        close.hidden = true;
+        // Prevent accidental rendering of inline children
+        inline.children = [];
+        i += 2; // skip to token after paragraph_close
       }
     }
 
-    // Persist on env for the replacement phase
+    // Persist for replacement phase
     state.env = state.env || {};
     state.env.abbreviations = abbrs;
-
-    // Remove definition paragraphs from token stream
-    if (toRemove.size > 0) {
-      state.tokens = tokens.filter((_, idx) => !toRemove.has(idx));
-    }
   });
 
-  // Replace occurrences in text with <abbr title="...">TERM</abbr>
+  // 2) Replace occurrences in text with <abbr title="...">TERM</abbr>
   md.core.ruler.after('abbr_def', 'abbr_replace', function abbrReplace(state) {
     const env = state.env || {};
     const abbrs = env.abbreviations || {};
@@ -69,7 +83,7 @@ export default function markdownitAbbr(md) {
     const Token = state.Token;
 
     for (const blk of state.tokens) {
-      if (blk.type !== 'inline' || !blk.children) continue;
+      if (blk.type !== 'inline' || !blk.children || blk.hidden) continue;
 
       const out = [];
       for (const child of blk.children) {
