@@ -257,22 +257,24 @@ Write Mermaid diagrams inside fenced code blocks labeled `mermaid`. They will re
 Example
 
 
-```mermaid
-flowchart TD
-  A[Start] --> B{Is it working?}
-  B -- Yes --> C[Ship it]
-  B -- No --> D[Fix it]
-```
+
+
 
 Sequence Diagram
 
 
 ```mermaid
 sequenceDiagram
-  participant A as Browser
-  participant B as Server
-  A->>B: GET /api
-  B-->>A: 200 OK
+    participant Alice
+    participant Bob
+    Alice->>John: Hello John, how are you?
+    loop HealthCheck
+        John->>John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts <br/>prevail!
+    John-->>Alice: Great!
+    John->>Bob: How about you?
+    Bob-->>John: Jolly good!
 ```
 
 

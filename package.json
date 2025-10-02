@@ -33,16 +33,13 @@
     "style-loader": "^4.0.0"
   },
   "dependencies": {
-    "@agoose77/markdown-it-mermaid": "^1.1.0",
     "dataroom-js": "^0.6.0",
     "highlight.js": "^11.11.1",
     "js-yaml": "^4.1.0",
     "markdown-it": "^14.1.0",
-    "markdown-it-abbr": "^2.0.0",
     "markdown-it-attribution": "^0.1.4",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-task-lists": "^2.1.1",
-    "mermaid": "^11.12.0",
     "tufte-css": "^1.8.0"
   }
 }
