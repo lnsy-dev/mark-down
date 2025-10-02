@@ -20,6 +20,12 @@ or import via cdn:
 import "https://cdn.jsdelivr.net/npm/@lnsy/mark-down/dist/mark-down.min.js"
 ```
 
+or include as a regular script tag:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@lnsy/mark-down/dist/mark-down.min.js"></script>
+```
+
 ## Usage
 
 Import the component into your project.
