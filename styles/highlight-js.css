@@ -43,6 +43,7 @@ code.hljs {
 .hljs-template-tag,
 .hljs-template-variable {
   color: var(--code-secondary-highlight-color);
+  font-style: italic;
 }
 .hljs-comment,
 .hljs-quote,

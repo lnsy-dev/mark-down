@@ -1,6 +1,5 @@
 import DataroomElement from "dataroom-js";
 import { parseDataroomMarkup } from "./mark-down-helpers.js";
-import { hljs } from "./vendor/highlight/highlight.min.js";
 
 class dataroomCompiler extends DataroomElement {
   async initialize() {
@@ -60,11 +59,6 @@ class dataroomCompiler extends DataroomElement {
     }
 
     this.innerHTML = parsed_markup.html;
-
-    // Highlight remaining code blocks
-    this.querySelectorAll("pre code").forEach((block) => {
-      hljs.highlightBlock(block);
-    });
   }
 
 

@@ -21,4 +21,5 @@
   --trinary-color: #475569;   
   --markdown-max-width: 40em;  
   --markdown-aside-width: 20em;  
+  --code-secondary-highlight-color: var(--secondary-color);
 }

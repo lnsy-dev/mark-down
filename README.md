@@ -250,39 +250,6 @@ Notes
 - Case-sensitive and whole-word matches.
 - Expansions do not occur inside fenced code blocks or inline code spans.
 
-### Mermaid Diagrams
-
-Write Mermaid diagrams inside fenced code blocks labeled `mermaid`. They will render into SVG at runtime via the Mermaid library.
-
-Example
-
-
-
-
-
-Sequence Diagram
-
-
-```mermaid
-sequenceDiagram
-    participant Alice
-    participant Bob
-    Alice->>John: Hello John, how are you?
-    loop HealthCheck
-        John->>John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts <br/>prevail!
-    John-->>Alice: Great!
-    John->>Bob: How about you?
-    Bob-->>John: Jolly good!
-```
-
-
-Notes
-- Mermaid blocks are detected by the language tag `mermaid`.
-- These blocks are not syntax-highlighted by highlight.js (they render as diagrams).
-- No additional configuration is required; the plugin is enabled by default in this package.
-
 ### Code Syntax Highlighting
 
 Code blocks are automatically highlighted using `highlight.js`. The language is auto-detected, but you can also specify it.
