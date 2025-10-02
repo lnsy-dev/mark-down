@@ -1,6 +1,7 @@
 @import "./styles/variables.css";
 @import "./styles/mark-down.css";
 @import "./styles/highlight-js.css";
+@import "./styles/mobile.css";
 
 mark-down {
   display: block;
