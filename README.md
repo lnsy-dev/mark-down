@@ -84,7 +84,7 @@ The `title`, `author`, and `version` attributes will be set on the `<mark-down>`
 
 ### Variable Substitution
 
-Variables defined in the YAML front matter can be injected directly into your Markdown content using a `$` prefix.
+Variables defined in the YAML front matter can be injected directly into your Markdown content using a `${ }` format.
 
 **Example:**
 
@@ -98,7 +98,7 @@ status: active
 
 This Markdown:
 ```markdown
-User **$username** is currently **$status**.
+User **${username}** is currently **${status}**.
 ```
 
 Will be rendered as:

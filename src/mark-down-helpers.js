@@ -32,12 +32,14 @@ export function removeYamlFrontMatter(inputString) {
     return inputString.replace(frontMatterRegex, '').trim();
 }
 
-const variablePattern = /\$[a-zA-Z_][a-zA-Z0-9_-]*/g;
+const variablePattern = /\$\{[a-zA-Z_][a-zA-Z0-9_-]*\}/g;
 
 function replaceVariables(str, attributes) {
   return str.replace(variablePattern, (match) => {
-    const varName = match.substring(1);
-    return attributes[varName] || match;
+    const varName = match.slice(2, -1);
+    return Object.prototype.hasOwnProperty.call(attributes, varName)
+      ? attributes[varName]
+      : match;
   });
 }
 
