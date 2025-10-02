@@ -6,7 +6,7 @@ module.exports = {
   entry: './index.js',
   mode: 'development',
   output: {
-    filename: process.env.OUTPUT_FILE_NAME || 'main.min.js',
+    filename: process.env.OUTPUT_FILE_NAME || 'mark-down.min.js',
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
