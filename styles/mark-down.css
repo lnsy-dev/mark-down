@@ -2,7 +2,7 @@ mark-down {
     max-width: var(--markdown-max-width);
     min-width: 320px;
     padding: 1em;
-    padding-right: var(--mark-down-aside-width);
+    padding-right: var(--markdown-aside-width);
 }
 
 mark-down h1, 
@@ -95,4 +95,94 @@ mark-down blockquote footer {
 mark-down hr {
     margin: 3em 0;
     color: var(--neutral-fg-color);
+}
+
+/* Scrollbar styling for mark-down component */
+/* Firefox */
+mark-down,
+mark-down * {
+    scrollbar-color: var(--neutral-fg-color) var(--neutral-bg-color);
+    scrollbar-width: thin;
+}
+
+/* Chromium, Safari, Edge */
+mark-down *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+mark-down *::-webkit-scrollbar-track {
+    background: var(--neutral-bg-color);
+}
+
+mark-down *::-webkit-scrollbar-thumb {
+    background-color: var(--neutral-fg-color);
+    border-radius: 8px;
+    border: 2px solid var(--neutral-bg-color);
+}
+
+mark-down *::-webkit-scrollbar-thumb:hover {
+    background-color: var(--secondary-color);
+}
+
+mark-down *::-webkit-scrollbar-thumb:active {
+    background-color: var(--highlight-color);
+}
+
+mark-down *::-webkit-scrollbar-corner {
+    background: var(--neutral-bg-color);
+}
+
+/* Checkbox styling for mark-down component */
+/* Native accent-color (modern browsers) */
+mark-down input[type="checkbox"] {
+    accent-color: var(--highlight-color);
+    width: 1rem;
+    height: 1rem;
+    vertical-align: text-bottom;
+    border: 2px solid var(--neutral-fg-color);
+    border-radius: 0.2rem;
+    background-color: var(--bg-color);
+    cursor: pointer;
+}
+
+mark-down input[type="checkbox"]:hover:not(:disabled) {
+    border-color: var(--secondary-color);
+}
+
+mark-down input[type="checkbox"]:checked {
+    border-color: var(--highlight-color);
+}
+
+mark-down input[type="checkbox"]:focus-visible {
+    outline: 2px solid var(--trinary-color);
+    outline-offset: 2px;
+}
+
+mark-down input[type="checkbox"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Fallback for browsers without accent-color support */
+@supports not (accent-color: red) {
+    mark-down input[type="checkbox"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: var(--bg-color);
+        display: inline-grid;
+        place-content: center;
+    }
+    mark-down input[type="checkbox"]::before {
+        content: "";
+        width: 0.55rem;
+        height: 0.55rem;
+        transform: scale(0);
+        transition: transform 120ms ease-in-out;
+        box-shadow: inset 1rem 1rem var(--highlight-color);
+        clip-path: polygon(14% 44%, 0 59%, 44% 100%, 100% 34%, 87% 20%, 44% 62%);
+    }
+    mark-down input[type="checkbox"]:checked::before {
+        transform: scale(1);
+    }
 }

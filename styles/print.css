@@ -1,0 +1,74 @@
+@media print {
+
+
+
+:root {  
+  --bg-color: #FFF;            
+  --fg-color: #000;
+  --neutral-bg-color: #f7f7f7;    
+  --neutral-fg-color: #555;        
+  --highlight-color: #F3f3f3;     
+  --secondary-color: #565656;     
+  --trinary-color: #474747;   
+  --link-color: var(--highlight-color);
+  --code-secondary-highlight-color: var(--secondary-color);
+  --code-foreground-color: var(--fg-color);
+  --code-background-color: var(--neutral-bg-color);
+  --code-highlight-color: var(--trinary-color);
+  --code-neutral-color: var(--neutral-fg-color);
+  --h1-font-size: 2rem;
+  --h2-font-size: 1.8rem;
+  --h3-font-size: 1.2rem;
+  --font-size: 1.0rem;
+  --line-height: 1.618rem;
+  --markdown-max-width: 40rem;  
+  --markdown-aside-width: 20rem;  
+}
+
+
+  @page {
+
+    size: letter;
+
+    margin: 1cm;
+
+  }
+
+  body {
+    background-color: white;
+    color: black;
+  }
+
+  code {
+    white-space: break-spaces !important;
+  }
+
+  mark-down {
+    background-color: white !important;
+    color: black;
+  }
+
+  mark-down aside {
+      width: var(--markdown-aside-width);
+      float: unset;
+      clear: unset;
+      margin-right: 0;
+      margin-left: auto;
+      width: 80%;
+      margin-top: 0.3rem;
+      margin-bottom: 0;
+      vertical-align: baseline;
+      position: unset;
+      font-size: 100%;
+      padding: 0.001em 2.0em;
+      display: block;
+  }
+
+  mark-down {
+    max-width: 100%;
+    margin: auto;
+    padding-right: 1em !important;
+    padding: 1em;
+  }
+
+}

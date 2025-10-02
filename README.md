@@ -1,4 +1,4 @@
-# mark-down Element
+# &lt;mark-down&gt; Element
 
 An opinionated, dependency-free web vanilla js component that parses and renders Markdown with a suite of advanced features. Drop it into any project to bring rich text formatting to your content.
 

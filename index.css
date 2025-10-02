@@ -2,6 +2,7 @@
 @import "./styles/mark-down.css";
 @import "./styles/highlight-js.css";
 @import "./styles/mobile.css";
+@import "./styles/print.css";
 
 mark-down {
   display: block;
