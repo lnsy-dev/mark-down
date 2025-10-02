@@ -43,3 +43,38 @@ A list of the Core Team and contributors can be found in the [CONTRIBUTORS.md][8
 [1]: https://www.npmjs.com/package/highlight.js
 [7]: https://github.com/highlightjs/highlight.js/blob/main/LICENSE
 [8]: https://github.com/highlightjs/highlight.js/blob/main/CONTRIBUTORS.md
+
+---
+
+## Abbreviations (markdown-it-abbr)
+
+This repository enables the markdown-it-abbr plugin in the Markdown-It pipeline to turn known abbreviations into semantic <abbr> elements with a title attribute.
+
+Where it’s enabled
+- Wired into the parser at: `src/mark-down-helpers.js` (via `.use(markdownitAbbr)`).
+
+Syntax
+- Define abbreviations anywhere in your Markdown (commonly at the top):
+  - `*[TERM]: Expansion`
+- Definitions are stripped from the rendered output; only the in-text occurrences are transformed.
+
+Example
+
+```
+*[HTML]: HyperText Markup Language
+*[W3C]: World Wide Web Consortium
+
+HTML is standardized by the W3C.
+```
+
+Renders roughly as:
+
+```
+<p><abbr title="HyperText Markup Language">HTML</abbr> is standardized by the <abbr title="World Wide Web Consortium">W3C</abbr>.</p>
+```
+
+Notes and behavior
+- Case-sensitive matching: the TERM is matched exactly as written.
+- Whole-word matching: expansions typically apply to standalone terms, not substrings.
+- Safe contexts: expansions do not apply inside fenced code blocks or inline code.
+- Accessibility: the resulting <abbr> elements include the long form via the `title` attribute.

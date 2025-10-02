@@ -218,6 +218,69 @@ Here is some text with a footnote.[^5]
 [^5]: This is the footnote content.
 
 
+### Abbreviations (markdown-it-abbr)
+
+Define abbreviations with their expansions, then write the short form in your text. At render time, occurrences are converted to semantic <abbr> elements with a title attribute.
+
+How to define
+- Place one definition per line: `*[TERM]: Expansion`
+- Definitions can appear anywhere (commonly near the top) and are not shown in the rendered HTML.
+
+Example
+
+```
+*[HTML]: HyperText Markup Language
+*[W3C]: World Wide Web Consortium
+
+HTML is standardized by the W3C.
+```
+
+Renders roughly as:
+
+```
+<p><abbr title="HyperText Markup Language">HTML</abbr> is standardized by the <abbr title="World Wide Web Consortium">W3C</abbr>.</p>
+```
+
+*[HTML]: HyperText Markup Language
+*[W3C]: World Wide Web Consortium
+
+HTML is standardized by the W3C.
+
+Notes
+- Case-sensitive and whole-word matches.
+- Expansions do not occur inside fenced code blocks or inline code spans.
+
+### Mermaid Diagrams
+
+Write Mermaid diagrams inside fenced code blocks labeled `mermaid`. They will render into SVG at runtime via the Mermaid library.
+
+Example
+
+
+```mermaid
+flowchart TD
+  A[Start] --> B{Is it working?}
+  B -- Yes --> C[Ship it]
+  B -- No --> D[Fix it]
+```
+
+Sequence Diagram
+
+
+```mermaid
+sequenceDiagram
+  participant A as Browser
+  participant B as Server
+  A->>B: GET /api
+  B-->>A: 200 OK
+```
+
+
+Notes
+- Mermaid blocks are detected by the language tag `mermaid`.
+- These blocks are not syntax-highlighted by highlight.js (they render as diagrams).
+- No additional configuration is required; the plugin is enabled by default in this package.
+
 ### Code Syntax Highlighting
 
 Code blocks are automatically highlighted using `highlight.js`. The language is auto-detected, but you can also specify it.
