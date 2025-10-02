@@ -32,7 +32,6 @@ or include as a regular script tag:
 <script src="https://cdn.jsdelivr.net/npm/@lnsy/mark-down/dist/mark-down.min.js"></script>
 ```
 
-
 Then, use the `<mark-down>` custom element in your HTML.
 
 ### Loading External Files
@@ -76,7 +75,7 @@ version: 1.2.3
 
 # Document Content
 
-This document is titled "$title" and was written by $author.
+This document is titled "${title}" and was written by ${author}.
 ```
 
 The `title`, `author`, and `version` attributes will be set on the `<mark-down>` element, which you can inspect in the DOM.
