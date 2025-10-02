@@ -358,6 +358,10 @@ function greet() {
 }
 ```
 
+### Print Ready Style Sheets
+
+Reasonable print style sheets for easy printing / PDF production.
+
 ---
 
 # Local Development
