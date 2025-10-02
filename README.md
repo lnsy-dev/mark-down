@@ -17,7 +17,7 @@ npm install @lnsy/mark-down
 or import via cdn: 
 
 ```
-import "https://npms... etc"
+import "https://cdn.jsdelivr.net/npm/@lnsy/mark-down/dist/mark-down.min.js"
 ```
 
 ## Usage
