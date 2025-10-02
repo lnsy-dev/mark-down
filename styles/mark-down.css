@@ -118,8 +118,10 @@ mark-down blockquote footer {
 }
 
 mark-down hr {
-    margin: 3em 0;
-    color: var(--neutral-fg-color);
+  border: none;
+  margin: 3em 0;
+  height: 1pt;
+  background-color: var(--neutral-bg-color);
 }
 
 /* Scrollbar styling for mark-down component */
