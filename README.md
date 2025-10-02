@@ -208,20 +208,24 @@ This is an aside. It can contain any other Markdown content, including lists, li
 Convert embedded images in wiki-style format with a caption on the next line into a `<figure>` with a `<figcaption>`.
 
 
-![[https://placehold.co/600x400/EEE/31343C]]
+![[https://placehold.co/600x400/EEE/31343C]] this is alt text
 this is a caption
 
 
 **Example:**
 
-```markdown
-![[this-is-an-image.png]]
+
+```md
+![[this-is-an-image.png]] this is alt text
 this is a caption
 ```
 
+
 would compile to:
 ```html
-<figure><img src="this-is-an-image.png"><figcaption>this is a caption</figcaption></figure>
+<figure>
+  <img src="this-is-an-image.png" alt="this is alt text">
+  <figcaption>this is a caption</figcaption></figure>
 ```
 
 This feature supports `.jpg`, `.jpeg`, `.webp`, `.png`, and `.mp4` file endings.
