@@ -6,7 +6,7 @@ This component extends standard Markdown to include YAML Front Matter, wiki styl
 
 It is a little heavy (currently about 1mb, 372k gzipped), but it has a lot of "batteries included" features.
 
-## Installation
+## Usage
 
 Install via npm: 
 
@@ -14,9 +14,15 @@ Install via npm:
 npm install @lnsy/mark-down
 ```
 
+Import the component into your project.
+
+```js
+import "@lnsy/mark-down";
+```
+
 or import via cdn: 
 
-```
+```js
 import "https://cdn.jsdelivr.net/npm/@lnsy/mark-down/dist/mark-down.min.js"
 ```
 
@@ -26,13 +32,6 @@ or include as a regular script tag:
 <script src="https://cdn.jsdelivr.net/npm/@lnsy/mark-down/dist/mark-down.min.js"></script>
 ```
 
-## Usage
-
-Import the component into your project.
-
-```js
-import "@lnsy/mark-down";
-```
 
 Then, use the `<mark-down>` custom element in your HTML.
 
@@ -296,7 +295,6 @@ Renders roughly as:
 
 *[HTML]: HyperText Markup Language
 *[W3C]: World Wide Web Consortium
-
 
 
 HTML is standardized by the W3C.
