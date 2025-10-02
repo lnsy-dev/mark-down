@@ -2,7 +2,7 @@
 
 An opinionated, dependency-free web vanilla js component that parses and renders markdown with extra sparkles. 
 
-This component extends standard Markdown to include YAML front matter assigned variables, wiki style links, task lists and more. 
+This component extends standard Markdown to include YAML front matter assigned variables, wiki style links, accessibility aware images and more. 
 
 It is a little heavy (currently about 1mb, 372k gzipped), but it has a lot of "batteries included" features.
 
