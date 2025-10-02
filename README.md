@@ -225,7 +225,8 @@ would compile to:
 ```html
 <figure>
   <img src="this-is-an-image.png" alt="this is alt text">
-  <figcaption>this is a caption</figcaption></figure>
+  <figcaption>this is a caption</figcaption>
+</figure>
 ```
 
 This feature supports `.jpg`, `.jpeg`, `.webp`, `.png`, and `.mp4` file endings.
