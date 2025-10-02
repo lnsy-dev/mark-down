@@ -77,6 +77,28 @@ This document is titled "$title" and was written by $author.
 The `title`, `author`, and `version` attributes will be set on the `<mark-down>` element, which you can inspect in the DOM.
 
 
+### Variable Substitution
+
+Variables defined in the YAML front matter can be injected directly into your Markdown content using a `$` prefix.
+
+**Example:**
+
+Given the front matter:
+```yaml
+---
+username: Alex
+status: active
+---
+```
+
+This Markdown:
+```markdown
+User **$username** is currently **$status**.
+```
+
+Will be rendered as:
+> User **Alex** is currently **active**.
+
 ### Custom Themes
 
 For your convenience we use css variables to adjust color and sizes.
@@ -108,27 +130,6 @@ Override these variables in your css to change how it looks:
 
 ```
 
-### Variable Substitution
-
-Variables defined in the YAML front matter can be injected directly into your Markdown content using a `$` prefix.
-
-**Example:**
-
-Given the front matter:
-```yaml
----
-username: Alex
-status: active
----
-```
-
-This Markdown:
-```markdown
-User **$username** is currently **$status**.
-```
-
-Will be rendered as:
-> User **Alex** is currently **active**.
 
 ### Task Lists
 
