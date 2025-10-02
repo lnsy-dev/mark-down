@@ -59,7 +59,7 @@ You can also place Markdown directly inside the element.
 
 # Features
 
-The `<mark-down>` element supports standard Markdown syntax and includes several powerful extensions.
+The `<mark-down>` element supports standard Markdown syntax with some extras.
 
 ### YAML Front Matter
 
