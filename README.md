@@ -250,6 +250,66 @@ Notes
 - Case-sensitive and whole-word matches.
 - Expansions do not occur inside fenced code blocks or inline code spans.
 
+### Subscript and Superscript
+
+Use subscript and superscript notation for chemistry, math, and ordinals.
+
+- Subscript: wrap content with `~` (tilde) — example: `H~2~O`
+- Superscript: wrap content with `^` (caret) — example: `E = mc^2^`
+
+**Example Markdown:**
+
+```markdown
+Water: H~2~O
+Energy: E = mc^2^
+Ordinal: 29^th^
+```
+
+**Compiles roughly to:**
+
+```html
+<p>Water: H<sub>2</sub>O</p>
+<p>Energy: E = mc<sup>2</sup></p>
+<p>Ordinal: 29<sup>th</sup></p>
+```
+
+Water: H~2~O
+Energy: E = mc^2^
+Ordinal: 29^th^
+
+
+Notes:
+- Works inline alongside other Markdown.
+- Does not affect content inside code spans or fenced code blocks.
+
+#### Quick Demos
+
+Minimal inline usage (assuming the component is already registered on the page):
+
+```html
+<mark-down>Water: H~2~O; Energy: E = mc^2^; Ordinal: 29^th^</mark-down>
+```
+
+Standalone HTML with module import:
+
+```html
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Subscript/Superscript Demo</title>
+    <script type="module">
+      import "@lnsy/mark-down";
+    </script>
+  </head>
+  <body>
+    <mark-down>
+      Water: H~2~O; Energy: E = mc^2^; Ordinal: 29^th^
+    </mark-down>
+  </body>
+</html>
+```
+
 ### Code Syntax Highlighting
 
 Code blocks are automatically highlighted using `highlight.js`. The language is auto-detected, but you can also specify it.

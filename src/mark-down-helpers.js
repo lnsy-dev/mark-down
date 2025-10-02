@@ -7,6 +7,8 @@ import figureCaptionPlugin from './markdown-it-figure-caption.js';
 import markdownitFootnote from 'markdown-it-footnote';
 import markdownitAbbr from './markdown-it-abbr.js';
 import markdownItHighlightjs from 'markdown-it-highlightjs';
+import markdownitSub from 'markdown-it-sub';
+import markdownitSup from 'markdown-it-sup';
 
 
 export function extractYamlFrontMatter(inputString) {
@@ -57,6 +59,8 @@ export async function parseDataroomMarkup(content, attributes = {}) {
   .use(markdownitFootnote)
   .use(markdownitAbbr)
   .use(markdownItHighlightjs)
+  .use(markdownitSub)
+  .use(markdownitSup)
   .use(function(md) {
     function aside(state, startLine, endLine) {
       let pos = state.bMarks[startLine] + state.tShift[startLine];
