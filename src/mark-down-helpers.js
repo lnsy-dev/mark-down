@@ -41,11 +41,8 @@ function replaceVariables(str, attributes) {
   });
 }
 
-
-
-
-export async function parseDataroomMarkup(content, attributes = {}) {
-
+// Build a configured markdown-it instance with all plugins
+function createMarkdownInstance(attributes = {}) {
   const md = markdownit({
     html: true,
     breaks: true,
@@ -138,9 +135,95 @@ export async function parseDataroomMarkup(content, attributes = {}) {
     return originalListItemOpen(tokens, idx, options, env, self);
   };
 
+  return md;
+}
+
+// Split markdown into chapters using lines that are exactly '---' as separators,
+// ignoring occurrences inside fenced code blocks.
+function splitMarkdownIntoChapters(mdText) {
+  const lines = mdText.split('\n');
+  let chapters = [];
+  let current = [];
+  let inFence = false;
+  let fenceChar = null; // '`' or '~'
+  let fenceLen = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const fenceStart = line.match(/^\s*(`{3,}|~{3,})/);
+    if (fenceStart) {
+      const marker = fenceStart[1];
+      const ch = marker[0];
+      const len = marker.length;
+      if (!inFence) {
+        inFence = true; fenceChar = ch; fenceLen = len;
+      } else if (inFence && ch === fenceChar && line.match(new RegExp('^\\s*' + fenceChar + '{' + fenceLen + ',}'))) {
+        inFence = false; fenceChar = null; fenceLen = 0;
+      }
+    }
+
+    if (!inFence && line.trim() === '---') {
+      const chunk = current.join('\n').trim();
+      if (chunk.length) chapters.push(chunk);
+      current = [];
+      continue;
+    }
+
+    current.push(line);
+  }
+
+  const tail = current.join('\n').trim();
+  if (tail.length) chapters.push(tail);
+
+  return chapters;
+}
+
+// Extract the first markdown ATX header text (e.g., # Title) from a chapter
+function getFirstHeader(mdText) {
+  const lines = mdText.split('\n');
+  let inFence = false;
+  let fenceChar = null;
+  let fenceLen = 0;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const fenceStart = line.match(/^\s*(`{3,}|~{3,})/);
+    if (fenceStart) {
+      const marker = fenceStart[1];
+      const ch = marker[0];
+      const len = marker.length;
+      if (!inFence) { inFence = true; fenceChar = ch; fenceLen = len; continue; }
+      if (inFence && ch === fenceChar && line.match(new RegExp('^\\s*' + fenceChar + '{' + fenceLen + ',}'))) { inFence = false; fenceChar = null; fenceLen = 0; continue; }
+    }
+    if (!inFence) {
+      const m = line.match(/^\s{0,3}(#{1,6})\s+(.+?)\s*$/);
+      if (m) {
+        return m[2].trim();
+      }
+    }
+  }
+  return '';
+}
+
+export async function parseDataroomMarkup(content, attributes = {}) {
+  const md = createMarkdownInstance(attributes);
   const data = extractYamlFrontMatter(content);
   const template_without_yaml = removeYamlFrontMatter(content);
-  const new_value = replaceVariables(template_without_yaml, data)
+  const new_value = replaceVariables(template_without_yaml, data);
   const renderedContent = md.render(new_value);
-  return {data:data, html: renderedContent};
+  return { data: data, html: renderedContent };
+}
+
+// Parse chapters with titles and rendered HTML, returning YAML data and chapters
+export async function parseChapters(content, attributes = {}) {
+  const md = createMarkdownInstance(attributes);
+  const data = extractYamlFrontMatter(content) || {};
+  const withoutYaml = removeYamlFrontMatter(content);
+  const substituted = replaceVariables(withoutYaml, data);
+  const chapterMdList = splitMarkdownIntoChapters(substituted);
+  const chapters = chapterMdList.map((chapterMd) => {
+    const title = getFirstHeader(chapterMd);
+    const html = md.render(chapterMd);
+    return { title, html };
+  });
+  return { data, chapters };
 }
