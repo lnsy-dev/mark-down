@@ -67,10 +67,6 @@ First published in 1906.
 
 ## Poemandres, The Shepherd Of Men
 
-*Notes on the text: This is the most famous of the Hermetic documents, a revelation account describing a vision of the creation of the universe and the nature and fate of humanity. Authors from the Renaissance onward have been struck by the way in which its creation myth seems partly inspired by* *Genesis, partly reacting against it. The Fall has here become the descent of the Primal Man through the spheres of the planets to the world of Nature, a descent caused not by disobedience but by love, and done with the blessing of God.*
-
-*The seven rulers of fate discussed in sections 9, 14 and 25 are the archons of the seven planets, which also appear in Plato’s* *Timaeus* *and in a number of the ancient writings usually lumped together as “Gnostic”. Their role here is an oddly ambivalent one, powers of Harmony who are nonetheless the sources of humanity’s tendencies to evil.*
-
 1\. It chanced once on a time my mind was meditating on the things that are, my thought was raised to a great height, the senses of my body being held back - just as men who are weighed down with sleep after a fill of food, or from fatigue of body.
 
 Methought a Being more than vast, in size beyond all bounds, called out my name and saith: What wouldst thou hear and see, and what hast thou in mind to learn and know?
@@ -277,8 +273,6 @@ For this cause I believe, and I bear witness; I go to Life and Light. Blessed ar
 
 ## To Asclepius
 
-*Notes on the text: This dialogue sets forth the difference between the physical and metaphysical worlds in the context of Greek natural philosophy. Some of the language is fairly technical: the “errant spheres” of sections 6 and 7 are the celestial spheres carrying the planets, while the “inerrant sphere” is that of the fixed stars. It is useful to keep in mind, also, that “air” and “spirit” are interchangeable concepts in Greek thought, and that the concept of the Good has a range of implications which don’t come across in the English word: one is that the good of any being, in Greek thought, was also that being’s necessary goal.*
-
 1\. *Hermes:* All that is moved, Asclepius, is it not moved in something and by something?
 
 *Asclepius:* Assuredly.
@@ -417,8 +411,6 @@ Let all that has been said then, be to thee, Asclepius, an introduction to the g
 
 ## The Sacred Sermon
 
-*Notes on the text: This brief (and possibly somewhat garbled) text recounts the creation and nature of the world in terms much like those of the Poemandres. The major theme is the renewal of all things in a cyclic universe, with the seven planetary rulers again playing a major role.*
-
 1\. The Glory of all things is God, Godhead and Godly Nature. Source of the things that are is God, who is both Mind and Nature - yea Matter, the Wisdom that reveals all things. Source \[too\] is Godhead - yea Nature, Energy, Necessity, and End, and Making-new-again.
 
 Darkness that knew no bounds was in Abyss, and Water \[too\] and subtle Breath intelligent; these were by Power of God in Chaos.
@@ -444,10 +436,6 @@ For that whereas the Godhead is Nature’s ever-making-new-again the cosmic mixt
 ---
 
 ## The Cup Or Monad
-
-*Notes on the text: This short text gives an unusually lucid overview of the foundations of Hermetic thought. The stress on rejection of the body and its pleasures, and on the division of humanity into those with Mind and those without, are reminiscent of some of the so-called “Gnostic” writings of the same period. The idea that the division is a matter of choice, on the other hand, is a pleasant variation on the almost Calvinist flavor of writings such as the* *Apocalypse* *ofAdam.*
-
-*Mead speculates that the imagery of the Cup in this text may have a distant connection, by way of unorthodox ideas about Communion, with the legends of the Holy Grail.*
 
 1\. Hermes: With Reason (Logos), not with hands, did the World-maker make the universal World; so that thou shouldst think of him as everywhere and ever-being, the Author of all things, and One and Only, who by His Will all beings hath created.
 
@@ -595,10 +583,6 @@ For that the subtler part of matter is the air, of air the soul, of soul the min
 
 ## In God Alone Is Good And Elsewhere Nowhere
 
-*Notes on the text: This sermon on the nature of the Good, like* To Asclepius (CH II)*, relies on the technical language of classical Greek philosophy - a point which some of Mead’s translations tend to obscure. “The Good,” in Greek thought, is also the self-caused and self-sufficient, and thus has little in common with later conceptions of “goodness,” just as the Latin word* *virtus* *and the modern Christian concept of “virtue” are very nearly opposites despite their etymological connection. The word “passion” here also needs to be understood in its older sense, as the opposite of “action” (cf. “active” and “passive”).*
-
-*The negative attitude toward humanity and the cosmos which appears in this text contrasts sharply with the more positive assessment found, for example, in the* Poemandres (CH I) *or in the* Asclepius *\- a reminder that these documents are relics of a diverse and not necessarily consistent school of thought*
-
 1\. Good, O Asclepius, is in none else save in God alone; nay, rather, Good is God Himself eternally.
 
 If it be so, \[Good\] must be essence, from every kind of motion and becoming free (though naught is free from It), possessed of stable energy around Itself, never too little, nor too much, an ever-full supply. \[Though\] one, yet \[is It\] source of all; for what supplieth all is Good. When I, moreover, say \[supplieth\] altogether \[all\], it is for ever Good. But this belongs to no one else save God alone.
@@ -681,10 +665,6 @@ For that it hath with mass of matter blocked them up and crammed them full of lo
 
 ## That No One Of Existing Things Doth Perish, But Men In Error Speak Of Their Changes As Destructions And As Deaths
 
-*Notes on the text: The idea of cyclic change central to CH III, “The Sacred Sermon”, also takes center stage here. A current of ancient speculation grounded in astrology held that as the planets returned after vast cycles of time to the same positions, so all events on earth would repeat themselves precisely into eternity in the future - and had done so from eternity in the past. The technical term for this recurrence,**apocatastasis, is the word Mead translates as “restoration” in the beginning of section 4.*
-
-*Mead footnotes this tractate as “obscure” and “faulty” in places, and his translation of the beginning of section 3 is conjectural.*
-
 1\. \[Hermes:\] Concerning Soul and Body, son, we now must speak; in what way Soul is deathless, and whence comes the activity in composing and dissolving Body.
 
 For there’s no death for aught of things \[that are\]; the thought this word conveys, is either void of fact, or \[simply\] by the knocking off a syllable what is called “death”, doth stand for “deathless”.
@@ -722,10 +702,6 @@ The source and limit and the constitution of all things is God.
 ---
 
 ## On Thought And Sense
-
-*Notes on the text: This somewhat diffuse essay covers a series of topics, starting with (and to some extent from) the concept that the set of perceptions we call “thoughts” and the set we call “sensory perceptions” are not significantly different from each other. The implications of this idea play a significant role in later Hermetic thought, particularly in the areas of magic and the Art of Memory; in this tractate, though, the issues involved are barely touched, and the argument wanders into moral dualisms and the equally important, but distinct, idea that the Cosmos is itself a divine creative power.*
-
-*Section 10, in which understanding is held up as the source and precondition of belief, should probably be seen as part of the same ancient debate on the roles of faith and reason that gave rise to Tertullian’s famous credo quia absurdum (“I believe because it is absurd”).*
 
 1\. I gave the Perfect Sermon (Logos) yesterday, Asclepius; today I think it right, as sequel thereunto, to go through point by point the Sermon about Sense.
 
@@ -802,14 +778,6 @@ Let so much, then, suffice on thought-and-sense.
 ---
 
 ## The Key
-
-*Notes: This longer tractate presents itself explicitly as a summary or abridgement of the General Sermons (CH II-IX), and discusses the Hermetic view of knowledge and its role in the lives and afterlives of human beings. The attentive reader will notice certain contradictions between the afterlife-teachings of this and previous tractates.*
-
-*One of the central concepts of The Key, and of Hermetic thought generally, is the distinction between ordinary discursive knowledge which can be expressed in words (in Greek, episteme, which Mead translates somewhat clumsily as “science”) and transcendent, unitive knowledge which cannot be communicated (in Greek, gnosis, which Mead simply and sensibly leaves untranslated). The same distinction can be found in many systems of mystical thought. Unlike most of these, though, the Hermetic teachings place value on both.*
-
-*Readers without much experience in the jargon of Classical philosophy will want to remember that “hylic” means “material”, “passible” means “subject to outside forces or to suffering”, and “intelligible” means “belonging to the realm of the Mind”, and “motion” includes all kinds of change. The special implications of “good” in Greek thought - of self-sufficiency and desirability - should also be kept in mind.*
-
-*The delightful irony of the Zen moment early in section 9, when Hermes - in the middle of this very substantial lecture - defines the good and pious man as “he who doth not say much or lend his ear to much” and thus rules out both himself and his audience, seems to have been lost on subsequent commentators.*
 
 1\. Hermes: My yesterday’s discourse (logos) I did devote to thee, Asclepius, and so ‘tis \[only\] right I should devote toafy’s to Tat; and this the more because ‘tis the abridgement of the General Sermons (Logoi) which he has had addressed to him.
 
@@ -1023,12 +991,6 @@ Wherefore the dispensation of all things is brought about by means of there, the
 
 ## Mind Unto Hermes
 
-*Notes on the text: This complex text is written as a revelation from the divine Mind - the “Man-Shepherd” of CH I - to Hermes, concerning the nature of God and the universe. Difficult enough in its own right, it has been made more so by some of Mead’s prose. I have tried to insert clarifications where these are most needed.*
-
-*Some notes on terminology may also be useful. The term Aeon here, as in many of the so-called “Gnostic” writings, refers to the timeless and spaceless realm of ideal being. The word cosmos means both “order” and “beauty” - the same root appears in the word “cosmetic”. Additionally, the words genesis and becoming in the translation are the same word in the Greek original.*
-
-*Finally, the word “inactive” in square brackets near the beginning of section 13 is Mead’s, intended to fill a lacuna in the text. The more usual conjecture, as he comments, is “apart from God”*
-
 1\. Mind: Master this sermon (logos), then, Thrice-greatest Hermes, and bear in mind the spoken words; and as it hath come unto Me to speak, I will no more delay.
 
 Hermes: As many men say many things, and these diverse, about the All and Good, I have not learned the truth. Make it, then, clear to me, O Master mine! For I can trust the explanation of these things, which comes from Thee alone.
@@ -1219,9 +1181,6 @@ So far these things have been made manifest to thee, Thrice-greatest one! Reflec
 
 ## About The Common Mind
 
-*Notes on the text: The “common mind” discussed in this dialogue is the same Mind which appears as a divine power in other parts of the Hermetic literature. It is identical, as well, with the “Good Daimon” whose words are quoted at several points here and elsewhere.*  
-*The Greek word logos - which means both “word” and “reason”, among other things - is central to much of the argument, and it’s unfortunate that English has no way to express the same complex of meanings. The praise of reason in parts 13-14 is also, and equally, a praise of human language, and this sort of double meaning plays a part elsewhere in this and other parts of the Hermetic literature.*
-
 1\. Hermes: The Mind, O Tat, is of God’s very essence - (if such a thing as essence of God there be) - and what that is, it and it only knows precisely.  
 The Mind, then, is not separated off from God’s essentiality, but is united to it, as light to sun.  
 This Mind in men is God, and for this cause some of mankind are gods, and their humanity is nigh unto divinity.  
@@ -1364,12 +1323,6 @@ Unto this Reason (Logos), son, thy adoration and thy worship pay. There is one w
 ---
 
 ## The Secret Sermon On The Mountain
-
-*Notes on the text: This dialogue is in many ways the culmination of the whole Corpus, summing up the theory of the Hermetic system at the same time as it provides an intriguing glimpse at the practice. The focus of the dialogue is the experience of Rebirth, which involves the replacement of twelve Tormentors within the self by ten divine Powers, leading to the awakening of knowledge of the self and God.*
-
-*The “Secret Hymnody” (sections 17-20) is presented as a litany for worship, to be performed twice each day, at sunrise and sunset. It’s interesting to note that while the sunrise worship is performed facing east, the sunset worship is done to the south; Egyptian tradition from Pharaonic times onward saw the west as the direction of death.*
-
-*The usual difficulties with the multiple meanings of the Greek word* *logos* *appear in the translation, compounded by Mead’s awkward style. Additionally, one of Mead’s few evasions can be found in section 12, where he relates the twelve Tormentors to the “twelve types-of-life”. This should more simply, and more accurately, have been translated as “the twelve signs of the Zodiac”. The Theosophical distaste for astrology may well have been involved here.*
 
 1\. Tat: \[Now\] in the General Sermons, father, thou didst speak in riddles most unclear, conversing on Divinity; and when thou saidst no man could e’er be saved before Rebirth, thy meaning thou didst hide.
 
@@ -1990,7 +1943,5 @@ For that the Reason of Divinity may not be known except by an intention of the s
 ‘Tis likest to the torrent’s flood, down-dashing headlong from above with all-devouring tide; so that it comes about, that by the swiftness of its speed it is too quick for our attention, not only for the hearers, but also for the very teachers.
 
 THE END
-
----
 
 ---
