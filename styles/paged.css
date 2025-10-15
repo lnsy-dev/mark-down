@@ -14,6 +14,16 @@ mark-down[paged-rendering="true"] {
   max-width: none;
 }
 
+mark-down[paged-rendering] .page-body:first-child {
+  text-align: center;
+}
+
+mark-down[paged-rendering] .page-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 /* Allow setting page size via attribute; currently only A5 portrait is implemented */
 mark-down[paged-rendering="true"][page-size="a5"] {
   --page-width: 148mm;
