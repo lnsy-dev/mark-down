@@ -59,6 +59,9 @@ class dataroomCompiler extends DataroomElement {
     }
 
     this.innerHTML = parsed_markup.html;
+
+    console.log("emitting event:");
+    this.event("MARKDOWN-RENDERED");
   }
 
 

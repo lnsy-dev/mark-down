@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MarkDown Component</title>
-  <script type="module" src="./dist/mark-down.min.js"></script>
+  <script type="module" src="/mark-down.min.js"></script>
   <style>
 
     @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
@@ -36,7 +36,7 @@
 <github-icon dark href="https://github.com/lnsy-dev/mark-down"></github-icon>
 
 
-<mark-down src="README.md">
+<mark-down id="mark_down" src="README.md">
 </mark-down>
 
 <script>
@@ -44,7 +44,14 @@
     document.querySelector('mark-down').addEventListener('checkbox-clicked', (e) => {
       console.log('Checkbox clicked!', e.detail);
     });
+
+    mark_down.on("MARKDOWN-RENDERED", (e) => {
+      console.log("MARKDOWN RENDERED", e);
+    });
+
   });
+
+
 </script>
 </body>
 </html>
