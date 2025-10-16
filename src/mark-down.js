@@ -1,7 +1,21 @@
+/**
+ * Custom Web Component for rendering markdown content with Dataroom
+ * @fileoverview Defines a custom element that processes markdown content with YAML front matter support
+ */
+
 import DataroomElement from "dataroom-js";
 import { parseDataroomMarkup } from "./mark-down-helpers.js";
 
+/**
+ * Custom element for compiling and rendering markdown content
+ * @class dataroomCompiler
+ * @extends DataroomElement
+ */
 class dataroomCompiler extends DataroomElement {
+  /**
+   * Initializes the markdown component with event handlers and content loading
+   * @return {Promise<void>}
+   */
   async initialize() {
 
     // --- Event Delegation Setup ---
@@ -42,6 +56,10 @@ class dataroomCompiler extends DataroomElement {
     await this.render();
   }
 
+  /**
+   * Renders the markdown content to HTML and updates the component's innerHTML
+   * @return {Promise<void>}
+   */
   async render() {
     let content = this.content;
 

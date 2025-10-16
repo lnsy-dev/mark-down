@@ -1,3 +1,12 @@
+/**
+ * Markdown-it plugin for handling abbreviations
+ * @fileoverview Processes abbreviation definitions and replaces terms with <abbr> tags
+ */
+
+/**
+ * Plugin function for markdown-it to handle abbreviations
+ * @param {Object} md - The markdown-it instance
+ */
 export default function markdownitAbbr(md) {
   // 1) Collect abbreviation definitions and hide their paragraphs
   md.core.ruler.after('inline', 'abbr_def', function abbrDef(state) {
@@ -131,6 +140,11 @@ export default function markdownitAbbr(md) {
   });
 }
 
+/**
+ * Escapes special regex characters in a string
+ * @param {string} str - String to escape
+ * @return {string} Escaped string safe for use in regex
+ */
 function escapeRegExp(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }

@@ -1,6 +1,21 @@
+/**
+ * Markdown-it plugin for handling wikilinks
+ * @fileoverview Processes [[wikilink]] syntax and converts to regular links
+ */
+
+/**
+ * Plugin function for markdown-it to handle wikilinks
+ * @param {Object} md - The markdown-it instance
+ * @param {Object} options - Plugin options
+ * @param {string} [options.wikilinksSearchPrefix] - Prefix for search URLs
+ */
 function wikilinksPlugin(md, options) {
   const wikilinkRegex = /\[\[([^\]]+)\]\]/g;
 
+  /**
+   * Rule function for processing wikilinks in markdown tokens
+   * @param {Object} state - The markdown-it state object
+   */
   function wikilinkRule(state) {
     const tokens = state.tokens;
 

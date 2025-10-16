@@ -1,3 +1,8 @@
+/**
+ * Markdown parsing helpers and utilities
+ * @fileoverview Provides functions for parsing YAML front matter, variable replacement, and markdown rendering with various plugins
+ */
+
 import yaml from 'js-yaml';
 import markdownit from 'markdown-it';
 import markdownItAttribution from 'markdown-it-attribution';
@@ -10,7 +15,11 @@ import markdownItHighlightjs from 'markdown-it-highlightjs';
 import markdownitSub from 'markdown-it-sub';
 import markdownitSup from 'markdown-it-sup';
 
-
+/**
+ * Extracts and parses YAML front matter from a markdown string
+ * @param {string} inputString - The markdown content with potential YAML front matter
+ * @return {Object|null} Parsed YAML object or null if parsing fails
+ */
 export function extractYamlFrontMatter(inputString) {
     const frontMatterRegex = /^---\n([\s\S]*?)\n---/;
     const match = inputString.match(frontMatterRegex);
@@ -27,13 +36,25 @@ export function extractYamlFrontMatter(inputString) {
     return {};
 }
 
+/**
+ * Removes YAML front matter from a markdown string
+ * @param {string} inputString - The markdown content with potential YAML front matter
+ * @return {string} The markdown content without YAML front matter
+ */
 export function removeYamlFrontMatter(inputString) {
     const frontMatterRegex = /^---\n([\s\S]*?)\n---/;
     return inputString.replace(frontMatterRegex, '').trim();
 }
 
+/** Regular expression pattern for matching variable placeholders like ${variableName} */
 const variablePattern = /\$\{[a-zA-Z_][a-zA-Z0-9_-]*\}/g;
 
+/**
+ * Replaces variable placeholders in a string with values from attributes object
+ * @param {string} str - The string containing variable placeholders
+ * @param {Object} attributes - Object containing variable values
+ * @return {string} String with variables replaced by their values
+ */
 function replaceVariables(str, attributes) {
   return str.replace(variablePattern, (match) => {
     const varName = match.slice(2, -1);
@@ -43,9 +64,12 @@ function replaceVariables(str, attributes) {
   });
 }
 
-
-
-
+/**
+ * Parses markdown content with YAML front matter and various plugins
+ * @param {string} content - The markdown content to parse
+ * @param {Object} [attributes={}] - Additional attributes for processing
+ * @return {Promise<Object>} Object containing parsed data and rendered HTML
+ */
 export async function parseDataroomMarkup(content, attributes = {}) {
 
   const md = markdownit({

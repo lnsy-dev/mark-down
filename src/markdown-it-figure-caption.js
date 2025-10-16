@@ -1,8 +1,21 @@
+/**
+ * Markdown-it plugin for handling figure captions
+ * @fileoverview Processes special image syntax to create figures with captions
+ */
+
+/**
+ * Plugin function for markdown-it to handle figure captions
+ * @param {Object} md - The markdown-it instance
+ */
 function figureCaptionPlugin(md) {
   // Override the normalize function to preprocess figure syntax
   const originalNormalize = md.utils.normalizeReference;
 
-  // Simple HTML escaping helpers
+  /**
+   * Escapes HTML special characters in a string
+   * @param {string} [str=''] - String to escape
+   * @return {string} HTML-escaped string
+   */
   function escapeHtml(str = '') {
     return String(str)
       .replace(/&/g, '&amp;')
@@ -10,6 +23,11 @@ function figureCaptionPlugin(md) {
       .replace(/>/g, '&gt;');
   }
 
+  /**
+   * Escapes HTML attribute values
+   * @param {string} [str=''] - String to escape for use in HTML attributes
+   * @return {string} Attribute-escaped string
+   */
   function escapeAttr(str = '') {
     return String(str)
       .replace(/&/g, '&amp;')
@@ -18,8 +36,12 @@ function figureCaptionPlugin(md) {
       .replace(/>/g, '&gt;');
   }
   
-  // Preprocess the markdown text to convert figure syntax to standard markdown
-  // NOTE: This function is fence-aware and will not transform content inside fenced code blocks
+  /**
+   * Preprocesses markdown text to convert figure syntax to standard markdown
+   * NOTE: This function is fence-aware and will not transform content inside fenced code blocks
+   * @param {string} src - The source markdown content
+   * @return {string} Preprocessed markdown with figure syntax converted
+   */
   function preprocessMarkdown(src) {
     // Image URL heuristic (kept consistent with previous behavior)
     const imageRegex = /\.(jpg|jpeg|webp|png|gif|svg|mp4)$/i;
