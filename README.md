@@ -335,6 +335,72 @@ Notes:
 - Does not affect content inside code spans or fenced code blocks.
 
 
+### Chart Blocks
+
+Create interactive charts using YAML configuration in fenced code blocks. Supports bar charts, scatter plots, line graphs, and donut charts via the [dataroom-charts](https://github.com/DATAROOM-NETWORK/dataroom-charts/) library.
+
+
+
+**Example:**
+
+````markdown
+```chart
+type: bar
+width: 500
+height: 300
+orientation: vertical
+data:
+  - label: "Q1"
+    value: 100
+    color: "#ff6b6b"
+  - label: "Q2"
+    value: 150
+    color: "#4ecdc4"
+  - label: "Q3"
+    value: 200
+    color: "#45b7d1"
+  - label: "Q4"
+    value: 175
+    color: "#96ceb4"
+```
+````
+
+```chart
+type: bar
+width: 500
+height: 300
+orientation: vertical
+monochrome: true
+data:
+  - label: "Q1"
+    value: 100
+    color: "#ff6b6b"
+  - label: "Q2"
+    value: 150
+    color: "#4ecdc4"
+  - label: "Q3"
+    value: 200
+    color: "#45b7d1"
+  - label: "Q4"
+    value: 175
+    color: "#96ceb4"
+```
+
+This renders as an interactive `<dataroom-chart>` component with the specified configuration.
+
+**Supported Chart Types:**
+- `bar` or `barchart` - Bar charts with vertical/horizontal orientation
+- `scatter` or `scatterchart` - Scatter plots with optional bubble sizing
+- `line`, `line-graph`, or `linegraph` - Line graphs with multiple series
+- `donut` or `donutchart` - Donut charts with optional labels
+
+**Common Attributes:**
+- `type`: Chart type (required)
+- `width`, `height`: Dimensions in pixels
+- `monochrome`: Enable pattern-based monochrome mode for accessibility
+- `color`: Override default color scheme
+- `data`: Chart data as YAML array
+
 ### Code Syntax Highlighting
 
 Code blocks are automatically highlighted using `highlight.js`. The language is auto-detected, but you can also specify it.

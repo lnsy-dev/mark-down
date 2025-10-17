@@ -14,6 +14,7 @@ import markdownitAbbr from './markdown-it-abbr.js';
 import markdownItHighlightjs from 'markdown-it-highlightjs';
 import markdownitSub from 'markdown-it-sub';
 import markdownitSup from 'markdown-it-sup';
+import chartBlocksPlugin from './markdown-it-chart-blocks.js';
 
 /**
  * Extracts and parses YAML front matter from a markdown string
@@ -87,6 +88,7 @@ export async function parseDataroomMarkup(content, attributes = {}) {
   .use(markdownItHighlightjs)
   .use(markdownitSub)
   .use(markdownitSup)
+  .use(chartBlocksPlugin)
   .use(function(md) {
     function aside(state, startLine, endLine) {
       let pos = state.bMarks[startLine] + state.tShift[startLine];

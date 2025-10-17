@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chart Blocks Test</title>
+  <script type="module" src="/mark-down.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+
+    body {
+      background-color: var(--bg-color, #fff);
+      color: var(--fg-color, #333);
+      margin: 2em auto;
+      max-width: 800px;
+      font-family: "Fira Code", monospace;
+      font-optical-sizing: auto;
+      padding: 0 1em;
+    }
+
+    mark-down {
+      display: block;
+      margin: 1em 0;
+    }
+
+    dataroom-chart {
+      margin: 1em 0;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Chart Blocks Test</h1>
+
+<mark-down src="test-charts.md"></mark-down>
+
+<script>
+  customElements.whenDefined('mark-down').then(() => {
+    const markDown = document.querySelector('mark-down');
+    
+    markDown.addEventListener('MARKDOWN-RENDERED', (e) => {
+      console.log('Markdown rendered with chart blocks!', e);
+    });
+  });
+</script>
+
+</body>
+</html>
