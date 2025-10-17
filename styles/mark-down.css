@@ -191,6 +191,10 @@ mark-down input[type="checkbox"]:disabled {
     cursor: not-allowed;
 }
 
+mark-down .slide-controls {
+    visibility: hidden;
+}
+
 /* Fallback for browsers without accent-color support */
 @supports not (accent-color: red) {
     mark-down input[type="checkbox"] {

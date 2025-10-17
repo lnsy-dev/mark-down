@@ -5,6 +5,7 @@
 
 import DataroomElement from "dataroom-js";
 import { parseDataroomMarkup } from "./mark-down-helpers.js";
+import { renderSlideshow } from "./slideshow-renderer.js";
 
 /**
  * Custom element for compiling and rendering markdown content
@@ -76,7 +77,12 @@ class dataroomCompiler extends DataroomElement {
       );
     }
 
-    this.innerHTML = parsed_markup.html;
+    // Check if slide-show attribute is present
+    if (this.attrs["slide-show"] === "true" || this.hasAttribute("slide-show")) {
+      renderSlideshow(parsed_markup.html, this);
+    } else {
+      this.innerHTML = parsed_markup.html;
+    }
 
     console.log("emitting event:");
     this.event("MARKDOWN-RENDERED");
