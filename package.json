@@ -1,6 +1,6 @@
 {
   "name": "@lnsy/mark-down",
-  "version": "0.8.0",
+  "version": "0.8.5",
   "description": "A context engineering boilerplate for generating custom HTML Elements",
   "main": "dist/mark-down.min.js",
   "scripts": {
