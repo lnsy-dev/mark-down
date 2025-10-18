@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MarkDown Component</title>
+  <script type="module" src="/mark-down.min.js"></script>
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--fg-color);
+      margin: auto;
+      font-family: "Fira Code", monospace;
+  font-optical-sizing: auto;
+
+    }
+
+    github-icon {
+      position: fixed;
+      right: 1em;
+      top: 1em;
+      height: 2em;
+    }
+
+   
+
+  </style>
+</head>
+<body>
+
+  <script src="https://lnsy-dev.github.io/simple-github-icon/github-icon.min.js"></script>
+<github-icon dark href="https://github.com/lnsy-dev/mark-down"></github-icon>
+
+
+<mark-down id="mark_down" wikilinks-search-prefix="md">
+  [[test this file]]
+</mark-down>
+
+</body>
+</html>
