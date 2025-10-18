@@ -28,7 +28,7 @@ function wikilinksPlugin(md, options) {
         while ((match = wikilinkRegex.exec(tokens[i].content)) !== null) {
           const [fullMatch, linkText] = match;
           const linkHref = options.wikilinksSearchPrefix
-            ? `/?${options.wikilinksSearchPrefix}=${encodeURIComponent(linkText)}`
+            ? `/#${options.wikilinksSearchPrefix}=${encodeURIComponent(linkText)}`
             : `${linkText}.html`;
 
           // Add text before the match
