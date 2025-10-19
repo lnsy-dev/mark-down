@@ -18,6 +18,7 @@ class dataroomCompiler extends DataroomElement {
    * @return {Promise<void>}
    */
   async initialize() {
+    this.yamlAttributes = [];
 
     // --- Event Delegation Setup ---
     // This single listener is attached once and handles all checkbox clicks.
@@ -61,6 +62,7 @@ class dataroomCompiler extends DataroomElement {
   }
 
   async loadMarkdownFile(src){
+    this.yamlAttributes.forEach((key) => this.removeAttribute(key));
     this.content = await fetch(src).then((res) => res.text());
     this.render();
   }
@@ -73,7 +75,8 @@ class dataroomCompiler extends DataroomElement {
     let content = this.content;
 
     const parsed_markup = await parseDataroomMarkup(content.trim(), this.attrs);
-    Object.keys(parsed_markup.data).forEach((key) => {
+    this.yamlAttributes = Object.keys(parsed_markup.data);
+    this.yamlAttributes.forEach((key) => {
       this.setAttribute(key, parsed_markup.data[key]);
     });
 
@@ -88,7 +91,8 @@ class dataroomCompiler extends DataroomElement {
     // Check if slide-show attribute is present
     if (this.attrs["slide-show"] === "true" || this.hasAttribute("slide-show")) {
       renderSlideshow(parsed_markup.html, this);
-    } else {
+    }
+    else {
       this.innerHTML = parsed_markup.html;
     }
 

@@ -81,6 +81,34 @@ This document is titled "${title}" and was written by ${author}.
 The `title`, `author`, and `version` attributes will be set on the `<mark-down>` element, which you can inspect in the DOM.
 
 
+### Slide Show
+
+You can create a simple presentation by enabling the slide show mode. When active, the component will treat horizontal rules (`---`) as slide separators.
+
+To enable it, add `slide-show: true` to your YAML front matter.
+
+**Example:**
+
+```markdown
+---
+slide-show: true
+title: "My Presentation"
+---
+
+# Slide 1
+
+This is the content of the first slide.
+
+---
+
+# Slide 2
+
+And this is the second slide.
+```
+
+This will render the content as a slideshow, with navigation controls to move between slides. All other YAML front matter attributes are still applied to the `<mark-down>` element as usual.
+
+
 ### Variable Substitution
 
 Variables defined in the YAML front matter can be injected directly into your Markdown content using a `${ }` format.
