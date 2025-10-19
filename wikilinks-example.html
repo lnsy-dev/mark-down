@@ -37,8 +37,34 @@
 
 
 <mark-down id="mark_down" wikilinks-search-prefix="md">
-  [[test this file]]
+  [[wikilinks-test-file-0]]
+  [[wikilinks-test-file-1]]
 </mark-down>
+
+<script>
+
+  async function init(){
+
+    const home = mark_down.getAttribute("src");
+
+    router_component.on("ROUTE-CHANGED", (new_route) => {
+      console.log(new_route);
+      if(new_route.length > 0){
+        mark_down.setAttribute("src", new_route + ".md")
+      } else {
+        mark_down.setAttribute("src", home);
+      }
+
+    })
+  }
+
+  if (document.readyState === 'complete') {
+      init();
+  } else {
+      window.addEventListener('load', init);
+  }
+
+</script>
 
 </body>
 </html>

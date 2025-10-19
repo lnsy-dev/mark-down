@@ -1,0 +1,1 @@
+[[wikilinks-test-file-1]]

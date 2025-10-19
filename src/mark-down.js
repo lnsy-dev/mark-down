@@ -48,6 +48,9 @@ class dataroomCompiler extends DataroomElement {
       }
     });
 
+
+    this.on("NODE-CHANGED", (e) => this.handleNodeChanged);
+
     if (typeof this.attrs["src"] !== "undefined") {
       this.content = await fetch(this.attrs["src"]).then((res) => res.text());
     } else {
@@ -88,6 +91,10 @@ class dataroomCompiler extends DataroomElement {
     this.event("MARKDOWN-RENDERED");
   }
 
+
+  handleNodeChanged(e){
+    console.log(e);
+  }
 
 }
 
