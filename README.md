@@ -427,7 +427,23 @@ function greet() {
 
 Reasonable print style sheets for easy printing / PDF production.
 
+### Load New Markdown File By Setting `src` attribute
+
+When you use setAttribute on the `src` attribute the component will 
+fetch the new file and re-render the content.
+
+```html
+<mark-down id="mark_down" src="old-file.md"></mark-down>
+<script>
+  mark_down.setAttribute("src", "new-file.md")
+</script>
+
+```
+
 ---
+
+
+
 
 # Local Development
 
