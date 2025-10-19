@@ -49,15 +49,20 @@ class dataroomCompiler extends DataroomElement {
     });
 
 
-    this.on("NODE-CHANGED", (e) => this.handleNodeChanged);
+    this.on("NODE-CHANGED", (e) => this.handleNodeChanged(e));
 
     if (typeof this.attrs["src"] !== "undefined") {
-      this.content = await fetch(this.attrs["src"]).then((res) => res.text());
+      this.loadMarkdownFile(this.attrs["src"]);
     } else {
       this.content = this.textContent;
       this.innerHTML = " ";
+      await this.render();
     }
-    await this.render();
+  }
+
+  async loadMarkdownFile(src){
+    this.content = await fetch(src).then((res) => res.text());
+    this.render();
   }
 
   /**
@@ -93,7 +98,10 @@ class dataroomCompiler extends DataroomElement {
 
 
   handleNodeChanged(e){
-    console.log(e);
+    console.log("node changed:", e);
+    if(e.attribute === "src" && e.oldValue !== e.newValue){
+      this.loadMarkdownFile(e.newValue);
+    }
   }
 
 }

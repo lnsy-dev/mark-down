@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MarkDown Component</title>
   <script type="module" src="/mark-down.min.js"></script>
+
   <style>
 
-    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+    /*@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');*/
 
 
     body {
@@ -32,13 +33,13 @@
 </head>
 <body>
 
-  <script src="https://lnsy-dev.github.io/simple-github-icon/github-icon.min.js"></script>
+  <router-component id="router_component"></router-component>
+
+<!--   <script src="https://lnsy-dev.github.io/simple-github-icon/github-icon.min.js"></script>
 <github-icon dark href="https://github.com/lnsy-dev/mark-down"></github-icon>
+ -->
 
-
-<mark-down id="mark_down" wikilinks-search-prefix="md">
-  [[wikilinks-test-file-0]]
-  [[wikilinks-test-file-1]]
+<mark-down id="mark_down" src="wikilinks-test-file-0.md" wikilinks-search-prefix="&md">
 </mark-down>
 
 <script>
