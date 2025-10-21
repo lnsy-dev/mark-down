@@ -10,7 +10,7 @@
  * @param {string} [options.wikilinksSearchPrefix] - Prefix for search URLs
  */
 function wikilinksPlugin(md, options) {
-  const wikilinkRegex = /\[\[([^\]]+)\]\]/g;
+  const wikilinkRegex = /\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g;
 
   /**
    * Rule function for processing wikilinks in markdown tokens
@@ -26,10 +26,11 @@ function wikilinksPlugin(md, options) {
         let match;
 
         while ((match = wikilinkRegex.exec(tokens[i].content)) !== null) {
-          const [fullMatch, linkText] = match;
+          const [fullMatch, linkTitle, linkAlias] = match;
+          const linkTarget = linkAlias || linkTitle;
           const linkHref = options.wikilinksSearchPrefix
-            ? `#&${options.wikilinksSearchPrefix}=${encodeURIComponent(linkText)}`
-            : `${linkText}.html`;
+            ? `#&${options.wikilinksSearchPrefix}=${encodeURIComponent(linkTarget)}`
+            : `${linkTarget}.html`;
 
           // Add text before the match
           if (match.index > lastIndex) {
@@ -44,7 +45,7 @@ function wikilinksPlugin(md, options) {
           inlineTokens.push(linkOpen);
 
           const text = new state.Token('text', '', 0);
-          text.content = linkText;
+          text.content = linkTitle;
           inlineTokens.push(text);
 
           const linkClose = new state.Token('link_close', 'a', -1);

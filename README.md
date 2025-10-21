@@ -195,27 +195,38 @@ renders
 
 ### Wiki Style Links
 
-Create internal links using the &#91;&#91;Page Name]] syntax, similar to Obsidian or TiddlyWiki.
+Create internal links using the `[[Page Name]]` syntax, similar to Obsidian or TiddlyWiki. This is useful for creating links to other documents within the same site.
 
-By default, &#91;&#91;My Page]] will generate a link to `/My%20Page.html`.
+**Basic Links**
+
+By default, `[[My Page]]` will generate a link to `/My%20Page.html`.
 
 **Example:**
-
 ```markdown
 This document links to another page: [[Getting Started]].
 ```
 
-You can customize the link behavior by setting the `wikilinks-search-prefix` attribute. If set, the link will become a search query.
+**Aliased Links**
+
+To use different display text for a link, use a pipe `|` to separate the display text from the link target: `[[display text|link-target]]`.
+
+**Example:**
+```markdown
+This is a link to [[a different page|Another Page]].
+```
+This will render a link with the text "a different page" that points to `Another%20Page.html`.
+
+**Customizing Link Behavior**
+
+You can customize the link behavior by setting the `wikilinks-search-prefix` attribute. If set, the link will become a search query instead of a direct link to an HTML file.
 
 **Example with `wikilinks-search-prefix="q"`:**
-
 ```html
 <mark-down wikilinks-search-prefix="q">
   This is a link to [[Another Page]].
 </mark-down>
 ```
-
-This will generate a link to `/?q=Another%20Page`.
+This will generate a link to `/?q=Another%20Page`. The same applies to aliased links.
 
 ### Asides
 
