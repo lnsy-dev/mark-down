@@ -15,6 +15,7 @@ import markdownItHighlightjs from 'markdown-it-highlightjs';
 import markdownitSub from 'markdown-it-sub';
 import markdownitSup from 'markdown-it-sup';
 import chartBlocksPlugin from './markdown-it-chart-blocks.js';
+import networkVisualizationPlugin from './network-visualization-parser.js';
 
 /**
  * Extracts and parses YAML front matter from a markdown string
@@ -85,6 +86,7 @@ export async function parseDataroomMarkup(content, attributes = {}) {
   .use(figureCaptionPlugin)
   .use(markdownitFootnote)
   .use(markdownitAbbr)
+  .use(networkVisualizationPlugin)
   .use(markdownItHighlightjs)
   .use(markdownitSub)
   .use(markdownitSup)
