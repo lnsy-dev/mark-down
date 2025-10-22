@@ -98,7 +98,10 @@ function parseNetworkBlock(content) {
   // Parse attributes from connections
   const nodeAttributes = parseConnectionAttributes(connections);
   
-  return generateHTML(frontMatter, nodes, edges, connections, nodeAttributes);
+  // Parse edges from connections
+  const diagramEdges = parseConnectionEdges(connections);
+  
+  return generateHTML(frontMatter, nodes, edges, connections, nodeAttributes, diagramEdges);
 }
 
 /**
@@ -210,16 +213,60 @@ function parseConnectionAttributes(connections) {
 }
 
 /**
+ * Parse edges from connection syntax
+ * 
+ * @param {array} connections - Array of connection strings
+ * @returns {array} Array of edge objects with source, target, label, and direction
+ */
+function parseConnectionEdges(connections) {
+  const edges = [];
+  
+  for (const connection of connections) {
+    // Match patterns like:
+    // (Node 1) --> (Node 2)
+    // (Node 1) <-- (Node 2)
+    // (Node 1) -[Edge Label]-> (Node 2)
+    
+    // Pattern for edge with optional label: --> or <-- or -[Label]->
+    const edgePattern = /\(([^|)]+)(?:\|[^)]+)?\)\s*(<?-(?:\[([^\]]+)\])?-?>?)\s*\(([^|)]+)(?:\|[^)]+)?\)/g;
+    let match;
+    
+    while ((match = edgePattern.exec(connection)) !== null) {
+      const source = match[1].trim();
+      const edgeSymbol = match[2].trim();
+      const label = match[3] ? match[3].trim() : null;
+      const target = match[4].trim();
+      
+      // Determine direction based on arrow
+      let direction = 'forward'; // default for -->
+      if (edgeSymbol.startsWith('<')) {
+        direction = 'backward'; // for <--
+      }
+      
+      edges.push({
+        source: direction === 'forward' ? source : target,
+        target: direction === 'forward' ? target : source,
+        label: label,
+        direction: direction
+      });
+    }
+  }
+  
+  return edges;
+}
+
+/**
  * Generate the final HTML output
  * 
  * @param {object} frontMatter - Parsed front matter attributes
  * @param {array} nodes - Array of node objects
- * @param {array} edges - Array of edge objects
+ * @param {array} edges - Array of edge objects from definitions
  * @param {array} connections - Array of connection strings
  * @param {object} nodeAttributes - Map of node names to their attributes
+ * @param {array} diagramEdges - Array of edge objects parsed from diagram
  * @returns {string} Complete HTML string
  */
-function generateHTML(frontMatter, nodes, edges, connections, nodeAttributes) {
+function generateHTML(frontMatter, nodes, edges, connections, nodeAttributes, diagramEdges) {
   let html = '<network-visualization';
   
   // Add front matter as attributes
@@ -244,17 +291,32 @@ function generateHTML(frontMatter, nodes, edges, connections, nodeAttributes) {
     html += '>\n';
     html += node.html;
     html += `\t</network-node>\n`;
-    if (i < nodes.length - 1 || edges.length > 0) {
+    if (i < nodes.length - 1 || edges.length > 0 || diagramEdges.length > 0) {
       html += '\t\n';
     }
   }
   
-  // Add edges
+  // Add edges from definitions (with content)
   for (let i = 0; i < edges.length; i++) {
     const edge = edges[i];
     html += `\t<network-edge name="${edge.name}">\n`;
     html += edge.html;
     html += `\t</network-edge>\n`;
+    if (i < edges.length - 1 || diagramEdges.length > 0) {
+      html += '\t\n';
+    }
+  }
+  
+  // Add edges from diagram connections (without content)
+  for (let i = 0; i < diagramEdges.length; i++) {
+    const edge = diagramEdges[i];
+    html += `\t<network-edge source="${edge.source}" target="${edge.target}"`;
+    
+    if (edge.label) {
+      html += ` label="${edge.label}"`;
+    }
+    
+    html += '></network-edge>\n';
   }
   
   html += '</network-visualization>';
