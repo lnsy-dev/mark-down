@@ -101,7 +101,10 @@ function parseNetworkBlock(content) {
   // Parse edges from connections
   const diagramEdges = parseConnectionEdges(connections);
   
-  return generateHTML(frontMatter, nodes, edges, connections, nodeAttributes, diagramEdges);
+  // Ensure all nodes referenced in connections exist
+  const allNodes = ensureAllNodesExist(nodes, connections, nodeAttributes);
+  
+  return generateHTML(frontMatter, allNodes, edges, connections, nodeAttributes, diagramEdges);
 }
 
 /**
@@ -244,8 +247,8 @@ function parseConnectionEdges(connections) {
       }
       
       edges.push({
-        source: direction === 'forward' ? source : target,
-        target: direction === 'forward' ? target : source,
+        sourceName: direction === 'forward' ? source : target,
+        targetName: direction === 'forward' ? target : source,
         label: label,
         direction: direction
       });
@@ -253,6 +256,39 @@ function parseConnectionEdges(connections) {
   }
   
   return edges;
+}
+
+/**
+ * Ensure all nodes referenced in connections exist, creating empty nodes if needed
+ * 
+ * @param {array} nodes - Array of existing node objects
+ * @param {array} connections - Array of connection strings
+ * @param {object} nodeAttributes - Map of node names to their attributes
+ * @returns {array} Complete array of node objects
+ */
+function ensureAllNodesExist(nodes, connections, nodeAttributes) {
+  const existingNodeNames = new Set(nodes.map(n => n.name));
+  const referencedNodes = new Set();
+  
+  // Find all node names referenced in connections
+  for (const connection of connections) {
+    const nodePattern = /\(([^|)]+)(?:\|[^)]+)?\)/g;
+    let match;
+    
+    while ((match = nodePattern.exec(connection)) !== null) {
+      referencedNodes.add(match[1].trim());
+    }
+  }
+  
+  // Create missing nodes
+  const allNodes = [...nodes];
+  for (const nodeName of referencedNodes) {
+    if (!existingNodeNames.has(nodeName)) {
+      allNodes.push({ name: nodeName, html: '' });
+    }
+  }
+  
+  return allNodes;
 }
 
 /**
@@ -276,10 +312,21 @@ function generateHTML(frontMatter, nodes, edges, connections, nodeAttributes, di
   
   html += '>\n';
   
+  // Create a map of node names to IDs
+  const nodeNameToId = {};
+  for (let i = 0; i < nodes.length; i++) {
+    nodeNameToId[nodes[i].name] = i;
+  }
+  
   // Add nodes
   for (let i = 0; i < nodes.length; i++) {
     const node = nodes[i];
-    html += `\t<network-node id="${i}" name="${node.name}"`;
+    html += `\t<network-node id="${i}"`;
+    
+    // Only add name attribute if node has content
+    if (node.html) {
+      html += ` name="${node.name}"`;
+    }
     
     // Add attributes from connections if they exist
     if (nodeAttributes[node.name]) {
@@ -296,27 +343,38 @@ function generateHTML(frontMatter, nodes, edges, connections, nodeAttributes, di
     }
   }
   
-  // Add edges from definitions (with content)
-  for (let i = 0; i < edges.length; i++) {
-    const edge = edges[i];
-    html += `\t<network-edge name="${edge.name}">\n`;
-    html += edge.html;
-    html += `\t</network-edge>\n`;
-    if (i < edges.length - 1 || diagramEdges.length > 0) {
-      html += '\t\n';
+  // Separate edges by whether they have labels (named edges from definitions)
+  const namedEdges = [];
+  const unnamedEdges = [];
+  
+  for (const edge of diagramEdges) {
+    const sourceId = nodeNameToId[edge.sourceName];
+    const targetId = nodeNameToId[edge.targetName];
+    
+    if (edge.label) {
+      namedEdges.push({ ...edge, sourceId, targetId });
+    } else {
+      unnamedEdges.push({ ...edge, sourceId, targetId });
     }
   }
   
-  // Add edges from diagram connections (without content)
-  for (let i = 0; i < diagramEdges.length; i++) {
-    const edge = diagramEdges[i];
-    html += `\t<network-edge source="${edge.source}" target="${edge.target}"`;
+  // Add unnamed edges first (simple connections)
+  for (let i = 0; i < unnamedEdges.length; i++) {
+    const edge = unnamedEdges[i];
+    html += `\t<network-edge source="${edge.sourceId}" target="${edge.targetId}"></network-edge>\n`;
+  }
+  
+  // Add named edges with their content
+  for (let i = 0; i < namedEdges.length; i++) {
+    const diagramEdge = namedEdges[i];
+    // Find the corresponding edge definition
+    const edgeDef = edges.find(e => e.name === diagramEdge.label);
     
-    if (edge.label) {
-      html += ` label="${edge.label}"`;
+    html += `\t<network-edge name="${diagramEdge.label}" source="${diagramEdge.sourceId}" target="${diagramEdge.targetId}">\n`;
+    if (edgeDef) {
+      html += edgeDef.html;
     }
-    
-    html += '></network-edge>\n';
+    html += `\t</network-edge>\n`;
   }
   
   html += '</network-visualization>';
