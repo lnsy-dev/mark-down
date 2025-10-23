@@ -1,5 +1,5 @@
-@import "./styles/variables.css";
 @import "./styles/mark-down.css";
 @import "./styles/highlight-js.css";
 @import "./styles/mobile.css";
 @import "./styles/print.css";
+@import "./styles/slide-show.css";

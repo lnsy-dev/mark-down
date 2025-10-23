@@ -1,12 +1,14 @@
 {
   "name": "@lnsy/mark-down",
-  "version": "0.9.52",
+  "version": "0.9.53",
   "description": "A context engineering boilerplate for generating custom HTML Elements",
+  "type": "module",
   "main": "dist/mark-down.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "rspack serve",
-    "build": "rspack build --mode=production"
+    "build": "rspack build --mode=production",
+    "compile": "node md-compile.js"
   },
   "repository": {
     "type": "git",
