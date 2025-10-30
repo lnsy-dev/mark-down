@@ -1,4 +1,5 @@
 
+
 # &lt;mark-down&gt; Element
 
 An opinionated, dependency-free web vanilla js component that parses and renders markdown with extra sparkles. 
@@ -87,6 +88,7 @@ The `title`, `author`, and `version` attributes will be set on the `<mark-down>`
 You can create a simple presentation by enabling the slide show mode. When active, the component will treat horizontal rules (`---`) as slide separators.
 
 To enable it, add `updated: 2025-10-30T11:09:45.897467
+updated: 2025-10-30T11:11:37.643255
 slide-show: true` to your YAML front matter.
 
 **Example:**
@@ -94,6 +96,7 @@ slide-show: true` to your YAML front matter.
 ```markdown
 ---
 updated: 2025-10-30T11:09:45.897467
+updated: 2025-10-30T11:11:37.643255
 slide-show: true
 title: "My Presentation"
 ---
