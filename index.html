@@ -8,11 +8,27 @@
   <script type="module" src="https://unpkg.com/dataroom-charts@0.0.5/dist/dataroom-charts.min.js"></script>
   <style>
 
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+
+
+    :root {
+      --background-color: #dddbc7;
+      --foreground-color: #000;
+      --highlight-color: #ff9900;
+      --secondary-highlight-color: #ff9900;
+      --error-color: #ff0000;
+      --warning-color: #ffa500;
+      --confirm-color: #008000;
+      --h1-font-size: 200%;
+      --h2-font-size: 180%;
+      --h3-font-size: 150%;
+    }
 
     body {
-      background-color: var(--bg-color);
-      color: var(--fg-color);
+      background-color: var(--background-color);
+      color: var(--foreground-color);
       margin: auto;
+      max-width: 40em;
       font-family: "Fira Code", monospace;
   font-optical-sizing: auto;
 
@@ -25,15 +41,15 @@
       height: 2em;
     }
 
-   
+
+
+  
 
   </style>
 </head>
 <body>
 
-<router-component></router-component>
 
-<mark-down id="" src="network-diagram-test.md"></mark-down>
 <mark-down id="mark_down" src="README.md"></mark-down>
   <script src="https://lnsy-dev.github.io/simple-github-icon/github-icon.min.js"></script>
 <github-icon dark href="https://github.com/lnsy-dev/mark-down"></github-icon>
