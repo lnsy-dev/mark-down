@@ -145,8 +145,8 @@ Override these variables in your css to change how it looks:
 
 ```css
 :root {  
-  --bg-color: #FFF8E7;            
-  --fg-color: #5b4931;
+  --background-color: #FFF8E7;            
+  --foreground-color: #5b4931;
   --neutral-bg-color: #d7d0c5;    
   --neutral-fg-color: #5e5550;        
   --highlight-color: #FE7400;     
@@ -384,6 +384,11 @@ Notes:
 
 Create interactive charts using YAML configuration in fenced code blocks. Supports bar charts, scatter plots, line graphs, and donut charts via the [dataroom-charts](https://github.com/DATAROOM-NETWORK/dataroom-charts/) library.
 
+Import the dataroom-chart custom elements:
+
+```html
+  <script type="module" src="https://unpkg.com/dataroom-charts@0.0.5/dist/dataroom-charts.min.js"></script>
+```
 
 
 **Example:**
@@ -445,6 +450,161 @@ This renders as an interactive `<dataroom-chart>` component with the specified c
 - `monochrome`: Enable pattern-based monochrome mode for accessibility
 - `color`: Override default color scheme
 - `data`: Chart data as YAML array
+
+### Network Visualizations
+
+Create interactive network diagrams using the `network` code block syntax. Network visualizations support nodes, edges, and connections with attributes, allowing you to create graph-like diagrams.
+
+Import the network-visualization cusotm html element: 
+
+```html
+  <script type="module" src="https://unpkg.com/@lnsy/network-visualization@0.0.1/dist/network-visualization.min.js"></script>
+
+```
+
+**Basic Syntax:**
+
+````markdown
+```network
+---
+attribute: value
+---
+
+Node Name:
+	Node content here (supports markdown)
+
+Another Node:
+	# Header
+	Some text
+
+---
+
+(Node Name) --> (Another Node)
+```
+````
+
+A network block has three sections:
+1. **Front Matter** (optional): YAML-style attributes for the entire visualization
+2. **Definitions**: Define nodes and edges with their content
+3. **Connections**: Define relationships between nodes
+
+**Example with Nodes and Simple Connections:**
+
+````markdown
+```network
+
+Database:
+	# PostgreSQL
+	Stores application data
+
+API Server:
+	# Node.js API
+	Handles business logic
+
+Frontend:
+	# React App
+	User interface
+
+---
+
+(Frontend) --> (API Server)
+(API Server) --> (Database)
+```
+````
+
+This creates a visualization with three nodes connected in sequence.
+
+```network
+---
+---
+Database:
+  # PostgreSQL
+  Stores application data
+API Server:
+  # Node.js API
+  Handles business logic
+Frontend:
+  # React App
+  User interface
+
+---
+(Frontend) --> (API Server)
+(API Server) --> (Database)
+```
+
+**Node Attributes:**
+
+Add visual or data attributes to nodes inline in the connection syntax:
+
+````markdown
+```network
+---
+---
+
+Start:
+	Beginning state
+
+End:
+	Final state
+
+---
+
+(Start|color:green;size:large) --> (End|color:red;size:small)
+```
+````
+
+Attributes are specified as `key:value` pairs separated by semicolons after a pipe `|` character.
+
+**Bidirectional Connections:**
+
+Use `<--` for reverse direction:
+
+````markdown
+```network
+---
+---
+---
+
+(Client) --> (Server)
+(Client) <-- (Server)
+```
+````
+
+**Complete Example:**
+
+````markdown
+```network
+---
+theme: dark
+layout: hierarchical
+---
+
+User Interface:
+	# Frontend Layer
+	React components
+	Tailwind CSS
+
+Business Logic:
+	# Service Layer  
+	Validation
+	Authentication
+
+Data Layer:
+	# Persistence
+	PostgreSQL database
+
+Authentication Edge:
+	**OAuth 2.0**
+	Secure token-based auth
+
+---
+
+(User Interface|layer:1) --> (Business Logic|layer:2)
+(Business Logic) -[Authentication Edge]-> (Data Layer|layer:3)
+```
+````
+
+This renders as a `<network-visualization>` custom element with `<network-node>` and `<network-edge>` children, ready to be styled and made interactive with custom CSS and JavaScript.
 
 ### Code Syntax Highlighting
 

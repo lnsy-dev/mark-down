@@ -5,6 +5,7 @@ mark-down {
     min-width: 320px;
     margin: auto;
     padding-right: var(--markdown-aside-width);
+    color: var(--foreground-color);
 }
 
 mark-down link-tag {
@@ -169,7 +170,7 @@ mark-down input[type="checkbox"] {
     vertical-align: text-bottom;
     border: 2px solid var(--neutral-fg-color);
     border-radius: 0.2rem;
-    background-color: var(--bg-color);
+    background-color: var(--background-color);
     cursor: pointer;
 }
 
@@ -200,7 +201,7 @@ mark-down .slide-controls {
     mark-down input[type="checkbox"] {
         -webkit-appearance: none;
         appearance: none;
-        background-color: var(--bg-color);
+        background-color: var(--background-color);
         display: inline-grid;
         place-content: center;
     }
