@@ -148,6 +148,102 @@ mark-down .slide-nav button:disabled {
     }
     
 mark-down .slide-nav button:focus {
+      outline: 2px solid var(--foreground-color, #000000);
+      outline-offset: 2px;
+    }
+    
+/* Side Navigation Controls */
+mark-down .slide-nav-side {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: var(--foreground-color, #000000);
+      font-size: 3rem;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.2s ease, opacity 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      backdrop-filter: blur(10px);
+    }
+    
+mark-down .slide-nav-prev {
+      left: 2rem;
+    }
+    
+mark-down .slide-nav-next {
+      right: 2rem;
+    }
+    
+mark-down .slide-nav-side:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+mark-down .slide-nav-side:focus {
       outline: 2px solid var(--foreground-color, #ffffff);
       outline-offset: 2px;
+    }
+    
+mark-down .slide-nav-side:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+/* Bullet Point Animations */
+mark-down .bullet-hidden {
+      display: none;
+    }
+    
+mark-down .bullet-visible {
+      display: list-item;
+      animation: fadeIn 0.3s ease-in;
+    }
+    
+@keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+/* Footnotes */
+mark-down .slide-footnotes {
+      margin-top: auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.9rem;
+      text-align: left;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+    
+mark-down .slide-footnotes-list {
+      margin: 0.5rem 0 0 0;
+      padding-left: 1.5rem;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      opacity: 0.85;
+    }
+    
+mark-down .slide-footnotes-list li {
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+    }
+    
+mark-down .slide-footnotes-list a {
+      color: var(--foreground-color, #ffffff);
+      text-decoration: underline;
+      opacity: 0.9;
     }

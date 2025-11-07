@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Footnotes Slideshow Test</title>
+  <script type="module" src="/mark-down.min.js"></script>
+
+</head>
+<body>
+  <mark-down slide-show show-controls>
+# Slide with Footnotes
+
+This slide contains a reference[^1] to a footnote.
+
+Here's another reference[^2] in the same slide.
+
+[^1]: This is the first footnote with some additional context.
+[^2]: This is the second footnote explaining something else.
+
+---
+
+## Slide Without Footnotes
+
+This slide has no footnotes and should display normally.
+
+- Bullet point 1
+- Bullet point 2
+- Bullet point 3
+
+---
+
+## Another Slide with Footnote
+
+This research[^3] shows interesting results.
+
+[^3]: Smith, J. (2024). "Important Research Paper". Journal of Science.
+
+---
+
+## Final Slide
+
+No footnotes here either!
+  </mark-down>
+  
+  <script type="module" src="index.js"></script>
+</body>
+</html>

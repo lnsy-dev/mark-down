@@ -6,6 +6,7 @@
 import DataroomElement from "dataroom-js";
 import { parseDataroomMarkup } from "./mark-down-helpers.js";
 import { renderSlideshow } from "./slideshow-renderer.js";
+import { extractFootnoteDefinitions } from "./slideshow-footnotes.js";
 
 /**
  * Custom element for compiling and rendering markdown content
@@ -72,9 +73,20 @@ class dataroomCompiler extends DataroomElement {
    * @return {Promise<void>}
    */
   async render() {
-    let content = this.content;
+    let content = this.content.trim();
 
-    const parsed_markup = await parseDataroomMarkup(content.trim(), this.attrs);
+    // Check if slide-show attribute is present
+    const isSlideshow = this.attrs["slide-show"] === "true" || this.hasAttribute("slide-show");
+    
+    // Extract footnotes before parsing if in slideshow mode
+    let footnoteMap = {};
+    if (isSlideshow) {
+      const footnoteResult = extractFootnoteDefinitions(content);
+      footnoteMap = footnoteResult.footnoteMap;
+      content = footnoteResult.markdownWithoutDefinitions;
+    }
+
+    const parsed_markup = await parseDataroomMarkup(content, this.attrs);
     this.yamlAttributes = Object.keys(parsed_markup.data);
     this.yamlAttributes.forEach((key) => {
       this.setAttribute(key, parsed_markup.data[key]);
@@ -88,9 +100,9 @@ class dataroomCompiler extends DataroomElement {
       );
     }
 
-    // Check if slide-show attribute is present
-    if (this.attrs["slide-show"] === "true" || this.hasAttribute("slide-show")) {
-      renderSlideshow(parsed_markup.html, this);
+    // Render slideshow or regular content
+    if (isSlideshow) {
+      renderSlideshow(parsed_markup.html, footnoteMap, this);
     }
     else {
       this.innerHTML = parsed_markup.html;

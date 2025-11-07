@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprehensive Footnotes Test</title>
+  <script type="module" src="/mark-down.min.js"></script>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .test-section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+    }
+    
+    h1 {
+      color: #333;
+    }
+    
+    .test-section h2 {
+      color: #666;
+      margin-top: 0;
+    }
+    
+    .launch-btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 1rem;
+    }
+    
+    .launch-btn:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Comprehensive Footnotes Test</h1>
+  
+  <div class="test-section">
+    <h2>Test 1: Regular Markdown with Footnotes</h2>
+    <p>This tests that footnotes work correctly in regular (non-slideshow) markdown documents.</p>
+    
+    <mark-down>
+# Regular Document
+
+This is a regular markdown document with a footnote[^1].
+
+Here's another paragraph with a different footnote[^2].
+
+## Section Two
+
+Multiple references to the same footnote[^1] should work.
+
+[^1]: This is the first footnote.
+[^2]: This is the second footnote.
+    </mark-down>
+  </div>
+  
+  <div class="test-section">
+    <h2>Test 2: Slideshow with Footnotes</h2>
+    <p>Click the button below to launch a slideshow where footnotes appear at the bottom of each slide.</p>
+    <a href="test-footnotes-slideshow.html" target="_blank" class="launch-btn">Launch Slideshow Test</a>
+  </div>
+  
+  <div class="test-section">
+    <h2>Expected Behavior</h2>
+    <ul>
+      <li><strong>Regular Markdown:</strong> Footnotes should appear at the bottom of the document (above this section)</li>
+      <li><strong>Slideshow:</strong> Each slide should show only the footnotes referenced on that slide</li>
+      <li><strong>Slideshow:</strong> Slides without footnote references should not show a footnotes section</li>
+      <li><strong>Both:</strong> Footnote numbers should be clickable links</li>
+      <li><strong>Both:</strong> Footnotes should have back-reference links (↩)</li>
+    </ul>
+  </div>
+</body>
+</html>

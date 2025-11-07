@@ -114,6 +114,172 @@ And this is the second slide.
 
 This will render the content as a slideshow, with navigation controls to move between slides. All other YAML front matter attributes are still applied to the `<mark-down>` element as usual.
 
+#### Slideshow Navigation Controls
+
+Control the visibility and appearance of navigation buttons using attributes on the `<mark-down>` element.
+
+**show-controls Attribute**
+
+Add the `show-controls` attribute to display navigation buttons on the left and right sides of each slide. These side navigation buttons provide an alternative to the bottom navigation controls and keyboard shortcuts.
+
+```html
+<mark-down src="presentation.md" slide-show show-controls></mark-down>
+```
+
+When `show-controls` is present or set to `"true"`, navigation buttons will appear on the left and right edges of the slideshow. When absent or set to `"false"`, only the bottom navigation controls will be visible.
+
+**Custom Navigation Icons**
+
+Customize the navigation button icons using Unicode symbols with the `back-icon` and `forward-icon` attributes.
+
+```html
+<mark-down 
+  src="presentation.md" 
+  slide-show 
+  show-controls
+  back-icon="⬅"
+  forward-icon="➡">
+</mark-down>
+```
+
+**Default Icons:**
+- `back-icon`: "◀" (if not specified)
+- `forward-icon`: "▶" (if not specified)
+
+You can use any Unicode symbol for the icons, such as arrows (←, →, ⇐, ⇒), chevrons (‹, ›), or other symbols that fit your presentation style.
+
+#### Bullet Point Animations
+
+Enable progressive reveal of list items for a more dynamic presentation experience. When enabled, bullet points appear one at a time as you navigate forward through the slide.
+
+```html
+<mark-down 
+  src="presentation.md" 
+  slide-show 
+  bullet-point-animations>
+</mark-down>
+```
+
+**How It Works:**
+
+When `bullet-point-animations` is enabled:
+- Only the first list item is visible when a slide loads
+- Pressing forward (arrow key, button, or click) reveals the next bullet point
+- Once all bullets are visible, pressing forward advances to the next slide
+- Pressing backward hides the most recently revealed bullet
+- Once only the first bullet is visible, pressing backward moves to the previous slide
+
+**Example Markdown:**
+
+```markdown
+---
+slide-show: true
+---
+
+# Key Features
+
+- First point appears immediately
+- Second point appears on next forward navigation
+- Third point appears after that
+- Finally, advance to next slide
+
+---
+
+# Next Slide
+
+Content here...
+```
+
+This creates a more engaging presentation by revealing information progressively, helping maintain audience focus.
+
+#### Footnotes in Slides
+
+Footnotes are automatically positioned at the bottom of each slide when using the slideshow mode. This allows you to provide citations and additional context without cluttering the main content.
+
+**Example Markdown:**
+
+```markdown
+---
+slide-show: true
+---
+
+# Research Findings
+
+Our study shows significant results[^1] in the treatment group.
+
+The control group showed minimal change[^2].
+
+[^1]: Smith et al., 2024, Journal of Science, p. 123
+[^2]: Johnson et al., 2023, Medical Review, p. 456
+
+---
+
+# Next Slide
+
+More content...
+```
+
+**Visual Appearance:**
+
+Footnotes appear at the bottom of each slide in smaller text, visually separated from the main content. Each footnote is numbered and corresponds to the reference in the slide text. Footnotes only appear on slides where they are referenced, not on every slide.
+
+#### Customizing Slideshow Styles
+
+All slideshow components use CSS classes for styling, allowing you to customize the appearance with your own stylesheets.
+
+**Available CSS Classes:**
+
+**Side Navigation Controls:**
+- `.slide-nav-side` - Base class for side navigation buttons
+- `.slide-nav-prev` - Previous button (positioned on left)
+- `.slide-nav-next` - Next button (positioned on right)
+
+**Bullet Point Animations:**
+- `.bullet-hidden` - Applied to hidden list items
+- `.bullet-visible` - Applied to visible list items
+
+**Footnotes:**
+- `.slide-footnotes` - Container for the footnote section
+- `.slide-footnotes-list` - The ordered list of footnotes
+
+**Example CSS Customization:**
+
+```css
+/* Customize side navigation buttons */
+.slide-nav-side {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 2rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.slide-nav-side:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Customize bullet animations */
+.bullet-visible {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Customize footnote appearance */
+.slide-footnotes {
+  border-top: 2px solid #ccc;
+  padding-top: 1rem;
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  color: #666;
+}
+```
+
+These CSS classes allow you to fully customize the visual appearance of navigation controls, bullet animations, and footnotes to match your presentation style.
+
 
 ### Variable Substitution
 

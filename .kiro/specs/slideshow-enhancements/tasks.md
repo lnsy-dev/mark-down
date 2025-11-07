@@ -1,0 +1,112 @@
+# Implementation Plan
+
+- [x] 1. Implement attribute configuration reader
+  - Create `getSlideShowConfig()` function that reads attributes from container element
+  - Parse `show-controls` attribute (check presence or "true" value)
+  - Parse `back-icon` attribute with default "◀"
+  - Parse `forward-icon` attribute with default "▶"
+  - Parse `bullet-point-animations` attribute (check presence or "true" value)
+  - Return configuration object with all settings
+  - _Requirements: 1.1, 1.2, 1.3, 1.4, 2.1, 2.2, 2.3, 2.4, 2.5, 3.1, 3.2, 3.7_
+
+- [x] 2. Implement side navigation controls
+  - [x] 2.1 Create side navigation button elements
+    - Create previous button element with CSS classes `slide-nav-side` and `slide-nav-prev`
+    - Create next button element with CSS classes `slide-nav-side` and `slide-nav-next`
+    - Set button `textContent` to icon values from config (no innerHTML)
+    - Set `aria-label` attributes for accessibility
+    - Only create buttons when `showControls` is true
+    - _Requirements: 1.1, 1.2, 2.1, 2.2, 2.5, 5.1, 5.2_
+  - [x] 2.2 Wire up side navigation event handlers
+    - Attach click event listeners to side navigation buttons
+    - Connect to existing `prevSlide()` and `nextSlide()` functions
+    - Update button disabled states in `updateSlide()` function
+    - _Requirements: 1.1, 1.2_
+  - [x] 2.3 Add CSS styles for side navigation
+    - Add `.slide-nav-side` base styles in `styles/slide-show.css`
+    - Add `.slide-nav-prev` positioning styles (left side)
+    - Add `.slide-nav-next` positioning styles (right side)
+    - Add hover and focus states
+    - Add disabled state styles
+    - Ensure no inline styles are used
+    - _Requirements: 5.1, 5.2, 5.7_
+
+- [x] 3. Implement bullet point animation system
+  - [x] 3.1 Create animation state tracking
+    - Create `slideAnimationState` object to track per-slide list items
+    - Store list items NodeList and visible count for each slide
+    - Initialize state when slide is first loaded
+    - _Requirements: 3.1, 3.2_
+  - [x] 3.2 Implement list item detection and initialization
+    - Query all `<li>` elements within slide content on slide load
+    - Apply `.bullet-visible` class to first list item
+    - Apply `.bullet-hidden` class to remaining list items
+    - Store list items and set initial `visibleCount = 1`
+    - Only apply when `bulletPointAnimations` is true
+    - _Requirements: 3.1, 3.2, 5.3, 5.4_
+  - [x] 3.3 Implement bullet reveal and hide functions
+    - Create `revealNextBullet()` function to show next hidden item
+    - Create `hideLastBullet()` function to hide last visible item
+    - Update CSS classes (`.bullet-hidden` ↔ `.bullet-visible`)
+    - Update `visibleCount` in animation state
+    - _Requirements: 3.3, 3.4, 3.5, 3.6, 5.3, 5.4_
+  - [x] 3.4 Modify navigation logic for bullet animations
+    - Update forward navigation to check for hidden bullets before advancing slide
+    - Update backward navigation to check for revealed bullets before retreating slide
+    - Call `revealNextBullet()` or `hideLastBullet()` when appropriate
+    - Advance/retreat slide only when all bullets shown/hidden
+    - Apply logic only when `bulletPointAnimations` is true
+    - _Requirements: 3.3, 3.4, 3.5, 3.6, 3.7_
+  - [x] 3.5 Add CSS styles for bullet animations
+    - Add `.bullet-hidden` class with `display: none` or `opacity: 0`
+    - Add `.bullet-visible` class with optional fade-in transition
+    - Ensure smooth visual transitions
+    - _Requirements: 5.3, 5.4, 5.7_
+
+- [x] 4. Implement footnote processing
+  - [x] 4.1 Create footnote detection and extraction
+    - Query for `.footnotes` element in slide content after HTML insertion
+    - Extract footnote list items from `.footnotes ol`
+    - Remove original `.footnotes` section from slide
+    - Only process if footnotes exist in slide
+    - _Requirements: 4.1, 4.4_
+  - [x] 4.2 Create footnote positioning
+    - Create container `div` with class `.slide-footnotes`
+    - Move footnote `<ol>` to container and add class `.slide-footnotes-list`
+    - Append footnote container to bottom of slide content
+    - Apply CSS classes for styling (no inline styles)
+    - _Requirements: 4.1, 4.3, 5.5, 5.6_
+  - [x] 4.3 Add CSS styles for footnotes
+    - Add `.slide-footnotes` container styles (position at bottom, spacing)
+    - Add `.slide-footnotes-list` list styles
+    - Set smaller font size for footnote text
+    - Add visual separation from main content
+    - _Requirements: 4.2, 4.3, 5.5, 5.6, 5.7_
+
+- [x] 5. Update README documentation
+  - [x] 5.1 Document show-controls attribute
+    - Add section explaining `show-controls` attribute
+    - Provide HTML example with attribute enabled
+    - Explain when navigation buttons appear
+    - _Requirements: 1.1, 1.2, 1.3, 1.4_
+  - [x] 5.2 Document navigation icon customization
+    - Add section explaining `back-icon` and `forward-icon` attributes
+    - Provide example with custom Unicode symbols
+    - List default icon values
+    - _Requirements: 2.1, 2.2, 2.3, 2.4_
+  - [x] 5.3 Document bullet-point-animations attribute
+    - Add section explaining `bullet-point-animations` attribute
+    - Describe progressive reveal behavior
+    - Provide markdown example with lists
+    - Explain navigation behavior with animations enabled
+    - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7_
+  - [x] 5.4 Document footnote display in slides
+    - Add section explaining automatic footnote positioning
+    - Provide markdown example with footnotes in slides
+    - Explain visual appearance at bottom of slides
+    - _Requirements: 4.1, 4.2, 4.3, 4.4_
+  - [x] 5.5 Document CSS customization classes
+    - List all new CSS classes for slideshow features
+    - Provide example CSS overrides for customization
+    - Show how to style side navigation, bullets, and footnotes
+    - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7_
