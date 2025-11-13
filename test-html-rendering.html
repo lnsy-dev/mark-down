@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML in Markdown Test</title>
+    <script type="module" src="./index.js"></script>
+</head>
+<body>
+    <h1>Testing HTML Elements in Markdown</h1>
+    
+    <mark-down>
+# Test Document
+
+This is regular markdown content.
+
+<globe-component></globe-component>
+
+<div class="custom-element">
+    <p>This is a custom HTML div with content</p>
+</div>
+
+More markdown content here.
+
+<custom-widget data-value="123"></custom-widget>
+
+## Another Section
+
+Regular markdown continues...
+    </mark-down>
+
+    <script>
+        // Define a simple custom element for testing
+        class GlobeComponent extends HTMLElement {
+            connectedCallback() {
+                this.innerHTML = '<div style="padding: 20px; background: #e3f2fd; border: 2px solid #2196f3; border-radius: 8px;">🌍 Globe Component Rendered Successfully!</div>';
+            }
+        }
+        customElements.define('globe-component', GlobeComponent);
+
+        class CustomWidget extends HTMLElement {
+            connectedCallback() {
+                const value = this.getAttribute('data-value');
+                this.innerHTML = `<div style="padding: 15px; background: #fff3e0; border: 2px solid #ff9800; border-radius: 8px;">📊 Custom Widget (value: ${value})</div>`;
+            }
+        }
+        customElements.define('custom-widget', CustomWidget);
+    </script>
+</body>
+</html>
