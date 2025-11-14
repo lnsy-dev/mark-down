@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML in Markdown Test</title>
+    <script type="module" src="./mark-down.min.js"></script>
+</head>
+<body>
+    <h1>Testing HTML Elements in Markdown</h1>
+
+<mark-down src="image-test.md"></mark-down>
+<mark-down src="image-test.md" wikilinks-search-prefix="q"></mark-down>
+
+<mark-down wikilinks-search-prefix="q">
+
+![[giordano.jpg]] this is alt text
+this is caption text
+
+# Business Intelligence. Artificial Intelligence. Real Intelligence. 
+
+**Expert AI & Business Intelligence Consulting — Personal, Proven, Production-Ready**
+</mark-down>
+
+<mark-down>
+
+![[giordano.jpg]] this is alt text
+this caption test
+
+# Business Intelligence. Artificial Intelligence. Real Intelligence. 
+
+**Expert AI & Business Intelligence Consulting — Personal, Proven, Production-Ready**
+</mark-down>
+
+
+</body>
+</html>

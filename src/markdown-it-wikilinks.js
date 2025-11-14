@@ -10,7 +10,21 @@
  * @param {string} [options.wikilinksSearchPrefix] - Prefix for search URLs
  */
 function wikilinksPlugin(md, options) {
-  const wikilinkRegex = /\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g;
+  const wikilinkRegex = /!\[\[([^|\]]+)(?:\|([^\]]+))?\]\]|\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g;
+  const imageRegex = /\.(jpg|jpeg|webp|png|gif|svg|mp4)$/i;
+
+  /**
+   * Checks if a URL is likely an image
+   * @param {string} url - The URL to check
+   * @return {boolean} True if the URL appears to be an image
+   */
+  function isImageUrl(url) {
+    return imageRegex.test(url) ||
+      url.includes('placehold') ||
+      url.includes('placeholder') ||
+      url.startsWith('http') ||
+      url.startsWith('/');
+  }
 
   /**
    * Rule function for processing wikilinks in markdown tokens
@@ -26,11 +40,10 @@ function wikilinksPlugin(md, options) {
         let match;
 
         while ((match = wikilinkRegex.exec(tokens[i].content)) !== null) {
-          const [fullMatch, linkTitle, linkAlias] = match;
+          const isImage = match[0].startsWith('!');
+          const linkTitle = isImage ? match[1] : match[3];
+          const linkAlias = isImage ? match[2] : match[4];
           const linkTarget = linkAlias || linkTitle;
-          const linkHref = options.wikilinksSearchPrefix
-            ? `#&${options.wikilinksSearchPrefix}=${encodeURIComponent(linkTarget)}`
-            : `${linkTarget}.html`;
 
           // Add text before the match
           if (match.index > lastIndex) {
@@ -39,17 +52,31 @@ function wikilinksPlugin(md, options) {
             inlineTokens.push(textToken);
           }
 
-          // Add link tokens
-          const linkOpen = new state.Token('link_open', 'a', 1);
-          linkOpen.attrSet('href', linkHref);
-          inlineTokens.push(linkOpen);
+          if (isImage && isImageUrl(linkTitle)) {
+            // Create image tokens
+            const imgToken = new state.Token('image', 'img', 0);
+            imgToken.attrSet('src', linkTitle);
+            imgToken.attrSet('alt', linkAlias || '');
+            imgToken.content = '';
+            imgToken.children = [];
+            inlineTokens.push(imgToken);
+          } else {
+            // Create link tokens
+            const linkHref = options.wikilinksSearchPrefix
+              ? `#&${options.wikilinksSearchPrefix}=${encodeURIComponent(linkTarget)}`
+              : `${linkTarget}.html`;
 
-          const text = new state.Token('text', '', 0);
-          text.content = linkTitle;
-          inlineTokens.push(text);
+            const linkOpen = new state.Token('link_open', 'a', 1);
+            linkOpen.attrSet('href', linkHref);
+            inlineTokens.push(linkOpen);
 
-          const linkClose = new state.Token('link_close', 'a', -1);
-          inlineTokens.push(linkClose);
+            const text = new state.Token('text', '', 0);
+            text.content = linkTitle;
+            inlineTokens.push(text);
+
+            const linkClose = new state.Token('link_close', 'a', -1);
+            inlineTokens.push(linkClose);
+          }
 
           lastIndex = wikilinkRegex.lastIndex;
         }

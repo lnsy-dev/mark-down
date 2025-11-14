@@ -108,6 +108,9 @@ class dataroomCompiler extends DataroomElement {
       this.innerHTML = parsed_markup.html;
     }
 
+    // Make content visible after rendering
+    this.setAttribute('rendered', '');
+
     this.event("MARKDOWN-RENDERED");
   }
 

@@ -6,6 +6,11 @@ mark-down {
     margin: auto;
     padding-right: var(--markdown-aside-width);
     color: var(--foreground-color);
+    visibility: hidden;
+}
+
+mark-down[rendered] {
+    visibility: visible;
 }
 
 mark-down link-tag {
